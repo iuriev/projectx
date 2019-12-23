@@ -1,17 +1,18 @@
 {
-  "name": "nodekb2",
-  "version": "1.0.0",
-  "description": "trying to work with express and node",
-  "main": "app.js",
+  "name": "qq",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "start": "node app"
+    "start": "node ./bin/www"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.19.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
     "express": "^4.17.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "nodemon": "^2.0.2",
     "pg": "^7.15.1",
-    "pug": "^2.0.4"
+    "pug": "2.0.0-beta11"
   }
 }
