@@ -1,23 +1,24 @@
-
 window.onload = function () {
-    importStudent();
+     importStudent();
+    //sortStudents();
+    // mapStudents();
+    // filterStudents();
+    //reduceStudents ();
+    //foreachStudents();
     document.getElementById('btnRead').disabled = true;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('btnCreate').addEventListener('click', createStudent);
 });
-
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('btnUpdate').addEventListener('click', updateStudent);
 });
-
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('btnDelete').addEventListener('click', deleteStudent);
 });
 
-function drawtable(temp){
-
+function drawtable(temp) {
     var col = [];
     for (var i = 0; i < temp.length; i++) {
         for (var key in temp[i]) {
@@ -28,10 +29,12 @@ function drawtable(temp){
     }
     // CREATE DYNAMIC TABLE.
     var table = document.createElement("table");
+    table.classList.add('table__dynamic')
     // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
-    var tr = table.insertRow(-1);                   // TABLE ROW.
+    var tr = table.insertRow(-1);                  // TABLE ROW.
     for (var i = 0; i < col.length; i++) {
         var th = document.createElement("th");      // TABLE HEADER.
+        th.classList.add('th')
         th.innerHTML = col[i];
         tr.appendChild(th);
     }
@@ -41,6 +44,7 @@ function drawtable(temp){
         tr = table.insertRow(-1);
         for (var j = 0; j < col.length; j++) {
             var tabCell = tr.insertCell(-1);
+            tabCell.classList.add('tabCell')
             tabCell.innerHTML = temp[i][col[j]];
         }
     }
@@ -69,12 +73,10 @@ function createStudent() {
     var age = document.getElementById('age').value;
     var ht = document.getElementById('homeTown').value;
 
-    if ( fn === "" || ln === "" ||age === "" || ht === "")
-    {
+    if (fn === "" || ln === "" || age === "" || ht === "") {
         alert("Field must be field");
 
-    }
-    else {
+    } else {
         var xhr = new XMLHttpRequest();
         xhr.open("POST", 'http://localhost:3001/create', true);
         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -96,12 +98,10 @@ function updateStudent() {
     var age = document.getElementById('age').value;
     var ht = document.getElementById('homeTown').value;
 
-    if (id === "" || fn === "" || ln === "" ||age === "" || ht === "")
-    {
+    if (id === "" || fn === "" || ln === "" || age === "" || ht === "") {
         alert("Field must be field");
 
-    }
-    else {
+    } else {
         var xhr = new XMLHttpRequest();
         xhr.open("POST", 'http://localhost:3001/update', true);
         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -119,13 +119,10 @@ function updateStudent() {
 function deleteStudent() {
     var id = document.getElementById('studentId').value;
     //  console.log
-    if (id === "")
-    {
+    if (id === "") {
         alert("Field ID is empty");
 
-    }
-    else
-    {
+    } else {
         var xhr = new XMLHttpRequest();
         xhr.open("POST", 'http://localhost:3001/delete', true);
         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -138,18 +135,116 @@ function deleteStudent() {
     }
 }
 
+function sortStudents() {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", 'http://localhost:3001/', true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {//Вызывает функцию при смене состояния.
+        if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+            var temp = JSON.parse(xhr.responseText);
+            temp.sort(function (a, b) {
+                if (a.ln > b.ln) {
+                    return 1;
+                } else {
+                    return -1;
+                }
+            });
+            drawtable(temp);
+        }
+    }
+    xhr.send();
+}
+
+function mapStudents() {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", 'http://localhost:3001/', true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {//Вызывает функцию при смене состояния.
+        if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+            var temp = JSON.parse(xhr.responseText);
+
+            //  var res = temp.map(function(a){
+
+            var res = temp;
+
+            var res = temp.map(function (a) {
+                return
+                a.ln.toUpperCase();
+            });
+
+            console.log(res);
+
+            drawtable(temp);
+        }
+    }
+    xhr.send();
+}
+
+function filterStudents() {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", 'http://localhost:3001/', true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {//Вызывает функцию при смене состояния.
+        if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
 
 
+            var temp = JSON.parse(xhr.responseText);
+
+            var res = temp.filter(function (a) {
+                return a.age > 25;
+            });
+
+            console.log(res);
+
+            drawtable(res);
+        }
+    }
+    xhr.send();
+}
+
+function reduceStudents() {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", 'http://localhost:3001/', true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {//Вызывает функцию при смене состояния.
+        if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+
+            var temp = JSON.parse(xhr.responseText);
+
+            var t = temp.reduce((prev, item) => prev + item.ln.length, 0);
 
 
+            drawtable(temp);
+            console.log(t);
+        }
+    }
+    xhr.send();
+}
 
+function foreachStudents() {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", 'http://localhost:3001/', true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {//Вызывает функцию при смене состояния.
+        if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
 
+            var temp = JSON.parse(xhr.responseText);
 
+            temp.forEach(function (slide) {
 
-
-
-
-
+                var node = document.createElement("dt");
+                var textnode = document.createTextNode("name");
+                var node2 = document.createElement("dd");  // Create a <li> node
+                var textnode2 = document.createTextNode(slide.ln);
+                node.appendChild(textnode);// Create a text node
+                node2.appendChild(textnode2);                              // Append the text to <li>
+                document.getElementById("myDl").appendChild(node);     // Append <li> to <ul> with id="myList"
+                document.getElementById("myDl").appendChild(node2);
+            });
+        }
+    }
+    xhr.send();
+}
 
 
 

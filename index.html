@@ -1,46 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
-    <title>Title</title>
+    <link rel="stylesheet" href="css/style.css">
+    <title>ProjectX</title>
 </head>
-<body>
-<p id="showData"></p>
 
-<div class="">
-    <button class="button" id="btnCreate">Create</button>
-</div>
-<div class="">
-    <button class="button" id="btnRead">Read</button>
-</div>
-<div class="">
-    <button class="button" id="btnUpdate">Update</button>
-</div>
-<div class="">
-    <button class="button" id="btnDelete">Delete</button>
-</div>
-<div class="">
-    <label for="studentId">studentId</label>
-    <input type="text" id="studentId"/>
-</div>
-<div class="">
-    <label for="firstName">firstName</label>
-    <input type="text" id="firstName"/>
-</div>
-<div class="">
-    <label for="lastName">lastName</label>
-    <input type="text" id="lastName"/>
-</div>
-<div class="">
-    <label for="age">age</label>
-    <input type="number" id="age"/>
-</div>
-<div class="">
-    <label for="homeTown">homeTown</label>
-    <input type="text" id="homeTown"/>
-</div>
+<body>
+    <main class="wrapper">
+        <div class="table">
+            <div id="showData"></div>
+
+            <div>
+                <dl id="myDl">
+    
+                </dl>
+            </div>
+        </div>
+       
+
+
+        <div class="menu">
+            <div class="menu__inputs">
+                <div class="inputs__wrapper">
+                    <label for="studentId">Student Id :</label>
+                    <input type="text" id="studentId" class="wrapper__input"/>
+                </div>
+                <div class="inputs__wrapper">
+                    <label for="firstName">First Name :</label>
+                    <input type="text" id="firstName" class="wrapper__input"/>
+                </div>
+                <div class="inputs__wrapper">
+                    <label for="lastName">Last Name :</label>
+                    <input type="text" id="lastName" class="wrapper__input"/>
+                </div>
+                <div class="inputs__wrapper">
+                    <label for="age">Age :</label>
+                    <input type="number" id="age" class="wrapper__input"/>
+                </div>
+                <div class="inputs__wrapper">
+                    <label for="homeTown">Hometown :</label>
+                    <input type="text" id="homeTown" class="wrapper__input"/>
+                </div>
+            </div>
+            <div class="menu__buttons">
+                <div class="buttons__wrapper">
+                    <button class="button" id="btnCreate">Create</button>
+                </div>
+                <!-- <div class="buttons__wrapper">
+                    <button class="button" id="btnRead">Read</button>
+                </div> -->
+                <div class="buttons__wrapper">
+                    <button class="button" id="btnUpdate">Update</button>
+                </div>
+                <div class="buttons__wrapper">
+                    <button class="button" id="btnDelete">Delete</button>
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
-<script  src="index.js"></script>
+<script src="js/index.js"></script>
 
 </html>

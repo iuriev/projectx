@@ -20,7 +20,8 @@ app.listen(3001, function () {
 
 app.get('/', function (req, res) {
 
-  var sql = `SELECT * FROM account ORDER BY user_id ASC;`;
+ // var sql = `SELECT * FROM account ORDER BY user_id ASC;`;
+  var sql = `SELECT * FROM account;`;
   client.query(sql, (err, queryRes) => {
     if (err) {
       console.log("node eeror");
