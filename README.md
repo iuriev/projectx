@@ -1,3 +1,4 @@
+![alt text](https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/X11.svg/200px-X11.svg.png)
 * install postgreSQL install https://www.postgresql.org/
 * install node.js https://nodejs.org/
 * install Moesif Orign & CORS Changer extension for chrome
@@ -5,14 +6,14 @@
 --- 
 
 * Enter pgAdmin
-  * create BD 'guru99'
-  * create table 'account' with columns:
+* create BD 'guru99'
+* create table 'account' with columns:
 
-user_id serial primary key
-fn  varying 50 NOT NULL
-ln character varying 50 NOT NULL
-age integer  NOT NULL
-ht character varying 50 NOT NULL
+    user_id serial primary key
+    fn  varying 50 NOT NULL
+    ln character varying 50 NOT NULL
+    age integer  NOT NULL
+    ht character varying 50 NOT NULL
 ---
 
 * clone repository git clone https://fesmofet@bitbucket.org/fesmofet/projectx.git
