@@ -1,5 +1,6 @@
 
-* install postgreSQL install https://www.postgresql.org/
+* install postgreSQL install https://www.postgresql.org/ 
+* your login and password must be admin
 * install node.js https://nodejs.org/
 * install Moesif Orign & CORS Changer extension for chrome
 * install git https://git-scm.com/
@@ -17,7 +18,7 @@
 ---
 
 * clone repository git clone https://fesmofet@bitbucket.org/fesmofet/projectx.git
-* enter to project folder
+* enter to projectX folder
 * npm install in console
 * in project folder run in terminal: node app.js
 * open index.html
