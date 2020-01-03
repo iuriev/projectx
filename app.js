@@ -8,6 +8,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 client.connect();
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.listen(3001, function () {
     console.log('Server started on port 3001 ..')
 });
@@ -24,7 +30,7 @@ app.get('/', function (req, res) {
 
 app.post('/create', function (req, res) {
     var sql = `INSERT INTO account (fn,ln,age, ht) VALUES ($1, $2,$3, $4);`;
-    client.query(sql, [req.body.fn, req.body.ln, req.body.age, req.body.age], (err, res) => {
+    client.query(sql, [req.body.fn, req.body.ln, req.body.age, req.body.ht], (err, res) => {
         if (err) {
             throw err;
         }
