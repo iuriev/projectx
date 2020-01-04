@@ -1,0 +1,102 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.wrapper .menu {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 1%;
+  position: sticky;
+  top: 0;
+  background-color: #dadada;
+  width: 100%;
+  border-bottom: 2px solid grey;
+}
+.wrapper .menu .menu__inputs {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+}
+.wrapper .menu .menu__inputs .inputs__wrapper {
+  display: flex;
+  flex-direction: column;
+  padding-right: 10px;
+}
+.wrapper .menu .menu__inputs .inputs__wrapper .wrapper__input {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  background-color: #d6d6d6;
+}
+.wrapper .menu .menu__inputs .inputs__wrapper .wrapper__input:focus {
+  background-color: white;
+}
+.wrapper .menu .menu__buttons {
+  margin-top: 1%;
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
+}
+.wrapper .menu .menu__buttons .button {
+  border-radius: 10px;
+  color: cornsilk;
+  cursor: pointer;
+  border: none;
+  background-color: #367ab6;
+  width: 100px;
+  height: 50px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.wrapper .menu .menu__buttons .button:hover {
+  background-color: #156ab4;
+}
+.wrapper .menu .menu__buttons .button__disabled {
+  border-radius: 10px;
+  color: cornsilk;
+  border: none;
+  background-color: #505050;
+  width: 100px;
+  height: 50px;
+}
+.wrapper .table {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+}
+.wrapper .table .table__dynamic {
+  width: 70vw;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  font-size: 14px;
+  border-collapse: collapse;
+  text-align: center;
+  border-radius: 10px;
+  border-spacing: 0;
+}
+.wrapper .table .table__dynamic .th {
+  background: #AFCDE7;
+  color: white;
+  padding: 10px 20px;
+  border: 2px solid white;
+}
+.wrapper .table .table__dynamic .th:first-child {
+  border-top-left-radius: 15px;
+}
+.wrapper .table .table__dynamic .th:last-child {
+  border-top-right-radius: 15px;
+  border-right: none;
+}
+.wrapper .table .table__dynamic .tabCell {
+  background: #D8E6F3;
+  border: 2px solid white;
+}
+/*# sourceMappingURL=style.css.map */
