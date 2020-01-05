@@ -7,20 +7,21 @@
 --- 
 
 * Enter pgAdmin
-* create BD 'guru99' database
-* create table 'account' with columns:
+* create BD 'students' database
+* create table 'account' using cript
 
-    1. user_id serial primary key
-    2. fn  varying 50 NOT NULL
-    3. ln character varying 50 NOT NULL
-    4. age integer  NOT NULL
-    5. ht character varying 50 NOT NULL
----
+CREATE TABLE account(
+    id INTEGER PRIMARY KEY,
+    fn VARCHAR (20) NOT NULL,
+    ln VARCHAR (20) NOT NULL,
+    age INTEGER  NOT NULL,
+    ht VARCHAR (10) NOT NULL
+    );
 
 * clone repository git clone https://fesmofet@bitbucket.org/fesmofet/projectx.git
 * enter to projectX folder
-* npm install in console
-* in project folder run in terminal: node app.js
+* run npm i
+* run node app
 * open index.html in Chrome
 * Done!
 
