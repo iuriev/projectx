@@ -1,10 +1,10 @@
 var config = require('./helpers/config.js');
 var helper = require('./helpers/helper.js');
-const bodyParser = require("body-parser");
-const {Client} = require('pg');
-const express = require('express');
-const app = express();
-const client = new Client(config.connectionString);
+var bodyParser = require("body-parser");
+var {Client} = require('pg');
+var express = require('express');
+var app = express();
+var client = new Client(config.connectionString);
 client.connect();
 
 app.use(bodyParser.json());
