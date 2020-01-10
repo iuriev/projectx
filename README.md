@@ -20,7 +20,7 @@ ht VARCHAR (10) NOT NULL);
 * create table 'teacher' using script
 
 CREATE TABLE teacher(
-id INTEGER PRIMARY KEY,
+id serial PRIMARY KEY,
 login VARCHAR (20) NOT NULL,
 password VARCHAR (20) NOT NULL,
 email VARCHAR (20) NOT NULL,
