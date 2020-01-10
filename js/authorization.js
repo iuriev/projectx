@@ -1,6 +1,4 @@
-window.onload = function (){
-    document.getElementById('login').addEventListener('click', personLogin);
-};
+document.getElementById('login').addEventListener('click', personLogin);
 
 function personLogin(){
     var login = document.getElementById('inputLogin').value;
@@ -20,8 +18,7 @@ function personLogin(){
             }
         };
         xhr.send("login=" + login + "&password=" + password);
-    }else{
-        alert("");
     }
-
 }
+
+
