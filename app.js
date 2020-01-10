@@ -33,8 +33,9 @@ app.post('/getStudents', function (req, res) {
 });
 
 app.post('/createTeacher', function (req, res) {
-    var sql = `INSERT INTO teacher (id,login,password,email,phone) VALUES ($1, $2,$3, $4, $5) ;`;
-    client.query(sql, [10, req.body.login, req.body.password, req.body.email, req.body.email], (err, response) => {
+
+    var sql = `INSERT INTO teacher (id,login,password,email,phone) VALUES ($1, $2, $3, $4, $5) ;`;
+    client.query(sql, [req.body.id, req.body.login, req.body.password, req.body.email, req.body.email], (err, response) => {
         if (err) {
             res.status(200).send("ID ERROR");
         } else {
