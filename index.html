@@ -10,49 +10,32 @@
 <body>
     <main class="wrapper">
         <div class="menu">
-            <div class="menu__inputs">
-                <div class="inputs__wrapper">
-                    <label for="studentId">Student Id :</label>
-                    <input type="number" id="studentId" class="wrapper__input"  />
-                </div>
-                <div class="inputs__wrapper">
-                    <label for="firstName">First Name :</label>
-                    <input type="text" id="firstName" class="wrapper__input" />
-                </div>
-                <div class="inputs__wrapper">
-                    <label for="lastName">Last Name :</label>
-                    <input type="text" id="lastName" class="wrapper__input" />
-                </div>
-                <div class="inputs__wrapper">
-                    <label for="age">Age :</label>
-                    <input type="number" id="age" class="wrapper__input" />
-                </div>
-                <div class="inputs__wrapper">
-                    <label for="homeTown">Hometown :</label>
-                    <input type="text" id="homeTown" class="wrapper__input" />
-                </div>
+            <div>
+                <p>
+                    Please, enter your login and pass
+                </p>
             </div>
-            <div class="menu__buttons">
-                <div class="buttons__wrapper">
-                    <button class="button" id="btnCreate">Create</button>
-                </div>
-                <div class="buttons__wrapper">
-                    <button class="button__disabled" id="btnRead">Read</button>
-                </div>
-                <div class="buttons__wrapper">
-                    <button class="button" id="btnUpdate">Update</button>
-                </div>
-                <div class="buttons__wrapper">
-                    <button class="button" id="btnDelete">Delete</button>
-                </div>
+            <div>
+                <input id="inputLogin" type="text">
             </div>
-        </div>
-        <div class="table">
-            <div id="showData"></div>
+            <div>
+                <input id="inputPassword" type="text">
+            </div>
+            <div>
+                <button id="login">Login</button>
+            </div>
+            <div>
+                <button id="register">Register</button>
+            </div>
+            <div>
+                <p>
+                    Your registration successful!
+                </p>
+            </div>
         </div>
        
     </main>
 </body>
-<script src="js/index.js"></script>
+<script src="js/authorization.js"></script>
 
 </html>
