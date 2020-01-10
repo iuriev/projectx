@@ -11,12 +11,25 @@
 * create table 'account' using cript
 
 CREATE TABLE account(
-    id INTEGER PRIMARY KEY,
-    fn VARCHAR (20) NOT NULL,
-    ln VARCHAR (20) NOT NULL,
-    age INTEGER  NOT NULL,
-    ht VARCHAR (10) NOT NULL
-    );
+id INTEGER PRIMARY KEY,
+fn VARCHAR (20) NOT NULL,
+ln VARCHAR (20) NOT NULL,
+age INTEGER  NOT NULL,
+ht VARCHAR (10) NOT NULL);
+
+* create table 'teacher' using script
+
+CREATE TABLE teacher(
+id INTEGER PRIMARY KEY,
+login VARCHAR (20) NOT NULL,
+password VARCHAR (20) NOT NULL,
+email VARCHAR (20) NOT NULL,
+phone VARCHAR (10) NOT NULL);  
+  
+* alter table 'teacher' using script
+ALTER TABLE account
+ADD CONSTRAINT FK_teacher
+FOREIGN KEY (teacher_id) REFERENCES teacher(id);
 
 * clone repository git clone https://fesmofet@bitbucket.org/fesmofet/projectx.git
 * enter to projectX folder
