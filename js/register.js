@@ -24,7 +24,7 @@ function personRegister(){
                     }
                 }
             };
-            xhr.send("login=" + loginReg + "&password=" + passwordReg1 + "&email=" + emailReg + "&phone" + telReg);
+            xhr.send("login=" + loginReg + "&password=" + passwordReg1 + "&email=" + emailReg + "&phone=" + telReg);
             console.log("login=" + loginReg + "&password=" + passwordReg1 + "&email=" + emailReg + "&phone" + telReg);
         }
     }else{
