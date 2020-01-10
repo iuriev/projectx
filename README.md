@@ -25,7 +25,10 @@ login VARCHAR (20) NOT NULL,
 password VARCHAR (20) NOT NULL,
 email VARCHAR (20) NOT NULL,
 phone VARCHAR (10) NOT NULL);  
-  
+
+* alter table 'account' using script
+  ALTER TABLE account
+  ADD teacher_id INTEGER;
 * alter table 'teacher' using script
 ALTER TABLE account
 ADD CONSTRAINT FK_teacher
