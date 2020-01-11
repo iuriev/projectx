@@ -1,41 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="less/style.css">
-    <title>ProjectX</title>
+    <title>Main</title>
 </head>
-
 <body>
-    <main class="wrapper">
-        <div class="menu">
-            <div>
-                <p>
-                    Please, enter your login and pass
-                </p>
-            </div>
-            <div>
-                <input id="inputLogin" type="text">
-            </div>
-            <div>
-                <input id="inputPassword" type="text">
-            </div>
-            <div>
-                <button id="login">Login</button>
-            </div>
-            <div>
-                <button id="register"><a href="./registration.html">Register</a></button>
-            </div>
-            <div>
-                <p>
-                    Your registration successful!
-                </p>
-            </div>
-        </div>
-       
-    </main>
+<main class="wrapper_start">
+    <div>
+        <p>
+            Please, enter your login and pass
+        </p>
+    </div>
+    <div>
+        <input id="inputlogin" type="text">
+    </div>
+    <div>
+        <input id="inputpassword" type="text">
+    </div>
+    <div>
+        <button id="login">Login</button>
+    </div>
+    <div>
+        <button id="register">Register</button>
+    </div>
+    <div id="regText">
+        <p>
+            Your registration successful!
+            Now you can use it to login!
+        </p>
+    </div>
+</main>
+<script src="js/index.js"></script>
 </body>
-<script src="js/authorization.js"></script>
-
 </html>
