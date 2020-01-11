@@ -3,31 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Main</title>
+    <link rel="stylesheet" href="less/style.css">
 </head>
 <body>
 <main class="wrapper_start">
-    <div>
-        <p>
-            Please, enter your login and pass
-        </p>
-    </div>
-    <div>
-        <input id="inputlogin" type="text">
-    </div>
-    <div>
-        <input id="inputpassword" type="text">
-    </div>
-    <div>
-        <button id="login">Login</button>
-    </div>
-    <div>
-        <button id="register">Register</button>
-    </div>
-    <div id="regText">
-        <p>
-            Your registration successful!
-            Now you can use it to login!
-        </p>
+    <div class="wrapper_start-contentBlock">
+        <div class="contentBlock_left">
+            <div class="instructions">Please, enter your login and pass</div>
+            <div class="login_inputLogin">
+                <input id="inputlogin" class="inputLogin" type="text">
+            </div>
+            <div class="login_inputPassword">
+                <input id="inputpassword" class="inputPassword" type="text">
+            </div>
+            <div class="login_buttonSignIn">
+                <button id="login">Login</button>
+            </div>
+            <div class="login_buttonRegister">
+                <button id="register">Register</button>
+            </div>
+            <div id="regText" class="login_regText">
+                    Your registration successful!<br />
+                    Now you can use it to login!
+            </div>
+        </div>
+        <div class="contentBlock_right"></div>
     </div>
 </main>
 <script src="js/index.js"></script>

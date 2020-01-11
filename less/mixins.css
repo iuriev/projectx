@@ -1,0 +1,8 @@
+.wrapper_login {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/*# sourceMappingURL=mixins.css.map */

@@ -1,0 +1,70 @@
+@import './mixins.less';
+
+
+.wrapper_reg{
+  .wrapper;
+  background-color: @registrationRegistration;
+
+  .registration{
+    .wrapper-contentBlock(25%; 60%; 350px);
+    background-color: @registrationWindowReg;
+    border-radius: 2px;
+
+    & .title_Reg {
+      .titleReg_Log(15px; 25px);
+      width: 110%;
+      padding-top: 10px;
+      margin-left: -20px;
+      background-color: @registrationTitleReg;
+      color: white;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-family: 'Roboto Slab', serif;
+    }
+
+    .reg-block_triangles {
+      display: flex;
+      justify-content: space-between;
+      width: 110.1%;
+      margin-left: -20px;
+
+      & .title_left {
+        width: 0px;
+        height: 0px;
+        border-style: inset;
+        border-width: 20px 0px 0px 20px;
+        border-color: @registrationAngleColor transparent transparent transparent;
+      }
+
+      & .title_right {
+        width: 0px;
+        height: 0px;
+        border-style: inset;
+        border-width: 20px 19px 0px 0px;
+        border-color: @registrationAngleColor transparent transparent transparent;
+      }
+    }
+
+    & .registration_input{
+      .input(80%);
+      padding-top: 20px;
+    }
+
+    & .registration_buttonRegister{
+      margin-top: 30px;
+      .btn_Log_Reg(80%; 10px);
+
+      & button{
+        background-color: @registrationBcgBtnReg;
+        border: 1.5px solid @registrationBorBtnReg;
+        color: @registrationColorBtnReg;
+
+        &:hover{
+          border: 1.5px solid @registrationBorBtnReg;
+          color: @registrationBcgBtnReg;
+          background-color: @registrationBcgBtnRegHov;
+        }
+      }
+    }
+  }
+}
