@@ -9,7 +9,6 @@ function personRegister() {
     if (passwordReg2.value === passwordReg1.value) {
         if (loginReg !== '' && loginReg.length > 2 &&
             passwordReg1 !== '' && passwordReg1.length > 2 &&
-            // emailReg.value !== '' && emailReg.value.includes('@') &&
             telReg.value !== "") {
             var xhr = new XMLHttpRequest();
             xhr.open("POST", 'http://localhost:3001/createTeacher');

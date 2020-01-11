@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap');
+//registration
+@registrationRegistration: #05142B;
+@registrationWindowReg: #F8F8F8;
+@registrationTitleReg: #5F43E3;
+@registrationAngleColor: #163ED0;
+@registrationBcgBtnReg: #F8F8F8;
+@registrationBorBtnReg: #5D6F95;
+@registrationColorBtnReg: #0A0064;
+@registrationBcgBtnRegHov: #5D6F95;
+
+//login
+@loginRegBtnBcg: #D4AF7B;
+
+
+.wrapper{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper-contentBlock(@widthOfblock: 50%; @minHeight: 50%; @minWidth: 450px) {
+  width: @widthOfblock;
+  min-height: @minHeight;
+  min-width: @minWidth;
+  -webkit-box-shadow: 0 0 7px 1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0 0 7px 1px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 7px 1px rgba(0, 0, 0, 0.75);
+}
+
+.titleReg_Log(@padtop: 50px; @sizeOfText: 20px){
+    text-align: center;
+    font-size: @sizeOfText;
+    font-family: 'Roboto Slab', serif;
+    padding-bottom: 15px;
+    font-weight: bold;
+    margin-top: @padtop;
+}
+
+.input(@widthOfInput: 50%){
+  display: flex;
+  justify-content: center;
+
+  & input{
+    width: @widthOfInput;
+    min-width: 200px;
+    background: transparent;
+    border: none;
+    outline:none;
+    font-size: 18px;
+    color: darken(#D9D9D9, 60%);
+    border-bottom: 2px solid darken(#D9D9D9, 20%);
+    text-align:center;
+  }
+}
+
+.btn_Log_Reg(@widthOfBtn: 50%; @paddingInBtn: 5px){
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  & button{
+    padding: @paddingInBtn;
+    border: none;
+    border-radius: 50px;
+    width: @widthOfBtn;
+    cursor: pointer;
+    margin-top: 3px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+}
