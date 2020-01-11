@@ -104,3 +104,19 @@ app.post('/delete', function (req, res) {
         }
     });
 });
+
+app.post('/myLoginName', function (req, res) {
+    var sql = `SELECT login FROM teacher WHERE id = $1`;
+    client.query(sql, [req.body.id], (err, response) => {
+        if (err) {
+            res.status(200).send("SERVER ERROR");
+        } else {
+            if (response.rows.length > 0) {
+                res.status(200).json(response.rows);
+            } else {
+                res.status(200).send("ERROR");
+
+            }
+        }
+    });
+});

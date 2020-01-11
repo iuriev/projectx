@@ -1,10 +1,13 @@
 window.onload = function () {
     importStudent();
+    myLoginName() ;
     document.getElementById('btnRead').disabled = true;
 };
 document.getElementById('btnCreate').addEventListener('click', createStudent);
 document.getElementById('btnUpdate').addEventListener('click', updateStudent);
 document.getElementById('btnDelete').addEventListener('click', deleteStudent);
+document.querySelector('#fullScreen').addEventListener('click', fullScreen);
+document.querySelector('#logout').addEventListener('click', logout);
 
 function drawHeader() {
 
@@ -146,6 +149,42 @@ function deleteStudent() {
         };
         xhr.send("id=" + id);
     }
+}
+
+function fullScreen() {
+    if (document.fullscreenElement) {
+        document.exitFullscreen();
+    } else {
+        document.documentElement.requestFullscreen();
+    }
+}
+
+function logout() {
+    localStorage.clear();
+    window.location.href = 'index.html';
+
+}
+
+function loginName (temp) {
+    console.log('yo')
+    document.querySelector('#myLoginName').innerHTML = 'You are logged in as ' + temp[0].login;
+}
+
+function myLoginName() {
+    var id = localStorage.getItem("UserID");
+    var xhr = new XMLHttpRequest();
+    
+    xhr.open("POST", 'http://localhost:3001/myLoginName', true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+           var temp1 = JSON.parse(xhr.responseText);
+           loginName(temp1) 
+        }
+        
+    };
+    xhr.send("id=" + id);
+   
 }
 
 
