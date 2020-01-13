@@ -2,10 +2,22 @@ window.onload = function () {
     document.getElementById('regText').hidden = localStorage.getItem("regSuccess") === null;
     document.getElementById('login').addEventListener('click', personLogin);
     document.getElementById('register').addEventListener('click', sentToRegPage);
+    var v = null;
+    var c = null;
+    var a = null;
+    var d = null;
 };
 
 function sentToRegPage() {
     console.log("adsdsada");
+    console.log("adsdsada");
+    console.log("adsdsada");
+    window.location.href = 'registration.html';
+    window.location.href = 'registration.html';
+    window.location.href = 'registration.html';
+    window.location.href = 'registration.html';
+    window.location.href = 'registration.html';
+    window.location.href = 'registration.html';
     window.location.href = 'registration.html';
 }
 
