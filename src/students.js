@@ -90,7 +90,7 @@ function updatePreparation() {
 
     var age = document.getElementById('age' + id);
     var ageText = age.textContent;
-    age.innerHTML = `<input type='text'  id = inputAge${id} value= ${ageText} >`;
+    age.innerHTML = `<input type='number'  id = inputAge${id} value= ${ageText} >`;
 
     var ht = document.getElementById('ht' + id);
     var htText = ht.textContent;
