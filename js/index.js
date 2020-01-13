@@ -5,6 +5,7 @@ window.onload = function () {
 };
 
 function sentToRegPage() {
+    console.log("adsdsada");
     window.location.href = 'registration.html';
 }
 
