@@ -21,7 +21,7 @@ phone character (10) NOT NULL
 * create table 'account' using scripts
 
 CREATE TABLE account(
-id INTEGER PRIMARY KEY,
+id serial PRIMARY KEY,
 fn character (30) NOT NULL,
 ln character (20) NOT NULL,
 age INTEGER  NOT NULL,

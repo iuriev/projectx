@@ -22,26 +22,25 @@ function processAuthorization() {
         login: inputLogin.value,
         password: inputPass.value
     };
-    xhr.open("POST", `${constants.server}authorize`);
+    xhr.open("POST", `${constants.server}authorizeTeacher`);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
-            if (xhr.responseText === "SERVER ERROR") {
+            if (xhr.status === 501 && xhr.responseText === "SERVER ERROR") {
                 alert(utils.getErrorMessageByStatusCode(xhr.status));
             }
-        }
-        if (xhr.status === 200) {
-            var responseArray = JSON.parse(xhr.responseText);
-            localStorage.setItem("UserID", responseArray[0].id);
-
-            localStorage.setItem("UserLogin", responseArray[0].login);
-            utils.changeLocation(constants.pathStudentsPage);
+            else{
+                var responseArray = JSON.parse(xhr.responseText);
+                localStorage.setItem("UserID", responseArray[0].id);
+                localStorage.setItem("UserLogin", responseArray[0].login);
+                utils.changeLocation(constants.pathStudentsPage);
+            }
         }
     };
     xhr.send(JSON.stringify(requestBody));
 }
 
 function validateForm() {
-    utils.validateInputLogin(inputLogin.value);
-    utils.validateInputPass(inputPass.value);
+    utils.validateInputLogin(inputLogin.value); // FIXME
+    utils.validateInputPass(inputPass.value);   // FIXME
 }

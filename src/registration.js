@@ -1,31 +1,37 @@
 document.getElementById('registerBtn').addEventListener('click', teacherRegister);
 require("./styles/index.less");
 function teacherRegister() {
-    var loginReg = document.getElementById('loginReg').value;
-    var passwordReg1 = document.getElementById('passwordReg1').value;
-    var passwordReg2 = document.getElementById('passwordReg2').value;
-    var emailReg = document.getElementById('emailReg').value;
-    var telReg = document.getElementById('telReg').value;
+    var login = document.getElementById('loginReg').value;
+    var password1 = document.getElementById('passwordReg1').value;
+    var password2 = document.getElementById('passwordReg2').value;
+    var email = document.getElementById('emailReg').value;
+    var phone = document.getElementById('telReg').value;
 
-    if (loginReg !== "" && passwordReg1 !== "" && passwordReg2 !== "" && emailReg !== "" && telReg !== "") {
-        if (passwordReg1.length > 2 || passwordReg2.length > 2) {
-            if (passwordReg2 === passwordReg1) {
-                if (loginReg.length > 2) {
+    if (login !== "" && password1 !== "" && password2 !== "" && email !== "" && phone !== "") {
+        if (password1.length > 2 || password2.length > 2) {
+            if (password2 === password1) {
+                if (login.length > 2) {
                     var xhr = new XMLHttpRequest();
+                    var requestBody = {
+                        login: login,
+                        password: password1,
+                        email: email,
+                        phone: phone
+                    };
                     xhr.open("POST", 'http://localhost:3001/createTeacher');
-                    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    xhr.setRequestHeader("Content-type", "application/json");
                     xhr.onreadystatechange = function () {
                         if (xhr.readyState === 4) {
                             if (xhr.status === 200 && xhr.responseText === "") {
                                 localStorage.setItem("regSuccess", 1);
                                 window.location.href = 'authorization.html';
                             }
-                            if (xhr.status === 200 && xhr.responseText === "LOGIN ERROR") {
+                            if (xhr.status === 500 && xhr.responseText === "LOGIN ERROR") {
                                 alert("Такой логин уже занят");
                             }
                         }
                     };
-                    xhr.send("login=" + loginReg + "&password=" + passwordReg1 + "&email=" + emailReg + "&phone=" + telReg);
+                    xhr.send(JSON.stringify(requestBody));
                 } else {
                     alert("Логин должен быть длиннее 3 символа");
                 }

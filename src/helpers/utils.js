@@ -14,8 +14,8 @@ function validateInputPass(currentValue) {
 function getErrorMessageByStatusCode(statusCode) {
     switch (statusCode) {
         case 500: return "DB error";
-        case 501: return "Incorrect login or password";
-        default:  return "Unknown exception was occurred while ...";
+        case 501:return "Incorrect login or password";
+        default: return "Unknown exception was occurred while ...";
     }
 }
 
