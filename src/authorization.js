@@ -22,14 +22,14 @@ function processAuthorization() {
         login: inputLogin.value,
         password: inputPass.value
     };
-    xhr.open("POST", `${constants.server}authorizeTeacher`);
+    xhr.open("POST", `${constants.server}authorize-teacher`);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
             if (xhr.status === 501 && xhr.responseText === "SERVER ERROR") {
                 alert(utils.getErrorMessageByStatusCode(xhr.status));
             }
-            else{
+            if (xhr.status === 200) {
                 var responseArray = JSON.parse(xhr.responseText);
                 localStorage.setItem("UserID", responseArray[0].id);
                 localStorage.setItem("UserLogin", responseArray[0].login);

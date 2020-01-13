@@ -78,6 +78,7 @@ function drawtable(temp) {
 }
 
 function updatePreparation() {
+
     var id = this.id.substring(9, this.id.length);
 
     var fn = document.getElementById('fn' + id);
@@ -114,17 +115,13 @@ function updatePreparation() {
     this.remove();
 }
 
-
 function cansel() {
     document.location.reload();
 }
 
 function importStudent() {
     var id = localStorage.getItem("UserID");
-    var requestBody = {
-        id: id
-    };
-    xhr.open("POST", 'http://localhost:3001/getAllStudents', true);
+    xhr.open("GET", `http://localhost:3001/all-students?id=${id}`, true);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = function () {//Вызывает функцию при смене состояния.
         if (xhr.readyState === 4 && xhr.status === 200) {
@@ -132,7 +129,7 @@ function importStudent() {
             drawtable(temp);
         }
     };
-    xhr.send(JSON.stringify(requestBody));
+    xhr.send();
 }
 
 function createStudent() {
@@ -140,7 +137,7 @@ function createStudent() {
     var ln = document.getElementById('lastName').value;
     var age = document.getElementById('age').value;
     var ht = document.getElementById('homeTown').value;
-    if (fn === "" || ln === "" || age === "" || ht === "") {
+    if (!fn || !ln || !age || !ht) {
         alert("If you want to add new student please fill all inputs");
     } else {
         var userID = localStorage.getItem("UserID");
@@ -151,7 +148,7 @@ function createStudent() {
             ht: ht,
             teacherId: userID
         };
-        xhr.open("POST", 'http://localhost:3001/createStudent');
+        xhr.open("POST", 'http://localhost:3001/create-student');
         xhr.setRequestHeader("Content-type", "application/json");
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
@@ -171,7 +168,7 @@ function updateStudent() {
         age: document.getElementById(`inputAge${id}`).value,
         ht: document.getElementById(`inputHt${id}`).value
     };
-    xhr.open("POST", 'http://localhost:3001/updateStudentInfo', true);
+    xhr.open("POST", 'http://localhost:3001/update-student-info', true);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
@@ -184,7 +181,7 @@ function deleteStudent() {
     var requestBody = {
         id: this.id.substring(9, this.id.length)
     };
-    xhr.open("POST", 'http://localhost:3001/deleteStudent', true);
+    xhr.open("POST", 'http://localhost:3001/delete-student', true);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {

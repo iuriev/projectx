@@ -1,5 +1,6 @@
 document.getElementById('registerBtn').addEventListener('click', teacherRegister);
 require("./styles/index.less");
+var utils = require('./helpers/utils.js');
 function teacherRegister() {
     var login = document.getElementById('loginReg').value;
     var password1 = document.getElementById('passwordReg1').value;
@@ -18,16 +19,16 @@ function teacherRegister() {
                         email: email,
                         phone: phone
                     };
-                    xhr.open("POST", 'http://localhost:3001/createTeacher');
+                    xhr.open("POST", 'http://localhost:3001/create-teacher');
                     xhr.setRequestHeader("Content-type", "application/json");
                     xhr.onreadystatechange = function () {
                         if (xhr.readyState === 4) {
                             if (xhr.status === 200 && xhr.responseText === "") {
                                 localStorage.setItem("regSuccess", 1);
-                                window.location.href = 'authorization.html';
+                                utils.changeLocation('authorization.html')
                             }
-                            if (xhr.status === 500 && xhr.responseText === "LOGIN ERROR") {
-                                alert("Такой логин уже занят");
+                            if (xhr.status === 502) {
+                                alert(utils.getErrorMessageByStatusCode(xhr.status));
                             }
                         }
                     };
