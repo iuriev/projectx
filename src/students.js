@@ -1,7 +1,8 @@
+require("./styles/index.less");
 window.onload = function () {
     importStudent();
-    myLoginName() ;
     document.getElementById('btnRead').disabled = true;
+    document.querySelector('#myLoginName').innerHTML = 'You are logged in as ' + localStorage.getItem("UserLogin");
 };
 document.getElementById('btnCreate').addEventListener('click', createStudent);
 document.getElementById('btnUpdate').addEventListener('click', updateStudent);
@@ -161,13 +162,8 @@ function fullScreen() {
 
 function logout() {
     localStorage.clear();
-    window.location.href = 'index.html';
+    window.location.href = 'authorization.html';
 
-}
-
-function loginName (temp) {
-    console.log('yo')
-    document.querySelector('#myLoginName').innerHTML = 'You are logged in as ' + temp[0].login;
 }
 
 function myLoginName() {

@@ -1,0 +1,74 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  background-image: url("../../assets/img/authorization-bg.jpg");
+}
+
+.authorization-block {
+  display: flex;
+  flex-direction: column;
+
+  &__input-section {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__button-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.input-section {
+  height: 70px;
+
+  &__label-login {
+  }
+  &__input-login {
+  }
+  &__label-password {
+  }
+  &__input-password {
+  }
+}
+
+.button-section {
+  height: 70px;
+
+  &__btn-login {
+    width: 120px;
+    height: 30px;
+    color: black;
+    background: yellow;
+    border: 1px solid black !important;
+    border-radius: 5px;
+  }
+
+  &__btn-registration {
+    width: 120px;
+    height: 30px;
+    color: black;
+    background: green;
+    border: 1px solid black !important;
+    border-radius: 5px;
+  }
+}
+
+.label-all {
+  margin-bottom: 5px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.input-all {
+  width: 150px;
+  height: 30px;
+}
+.btn-all {
+  border: none;
+  &:hover {
+    cursor: pointer;
+  }
+}

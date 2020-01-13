@@ -38,10 +38,10 @@ FOREIGN KEY (teacher_id) REFERENCES teacher(id);
 * clone repository git clone https://fesmofet@bitbucket.org/fesmofet/projectx.git
 * enter to projectX folder
 * run npm i
-* run node app
+* run node server
 * open index.html in Chrome
 * Done!
 ---
-You can also change path to your database and table in app.js connectionString variable
+You can also change path to your database and table in server.js.js connectionString variable
 
 

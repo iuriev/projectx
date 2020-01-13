@@ -1,5 +1,5 @@
 document.getElementById('registerBtn').addEventListener('click', teacherRegister);
-
+require("./styles/index.less");
 function teacherRegister() {
     var loginReg = document.getElementById('loginReg').value;
     var passwordReg1 = document.getElementById('passwordReg1').value;
@@ -18,7 +18,7 @@ function teacherRegister() {
                         if (xhr.readyState === 4) {
                             if (xhr.status === 200 && xhr.responseText === "") {
                                 localStorage.setItem("regSuccess", 1);
-                                window.location.href = 'index.html';
+                                window.location.href = 'authorization.html';
                             }
                             if (xhr.status === 200 && xhr.responseText === "LOGIN ERROR") {
                                 alert("Такой логин уже занят");

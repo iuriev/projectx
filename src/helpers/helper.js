@@ -1,8 +1,3 @@
-var helper = {
-    queryBuilder
-};
-module.exports = helper;
-
 function queryBuilder(arr) {
 
     var sqlString = "";
@@ -38,3 +33,7 @@ function queryBuilder(arr) {
     sqlString = "UPDATE account SET " + sqlString + " WHERE id = " + arr.id + ";";
     return sqlString;
 }
+
+module.exports = {
+    queryBuilder: queryBuilder,
+};
