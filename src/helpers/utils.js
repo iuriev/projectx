@@ -15,6 +15,7 @@ function getErrorMessageByStatusCode(statusCode) {
     switch (statusCode) {
         case 500: return "DB error";
         case 501: return "Incorrect login or password";
+        case 502: return "Login is already used";
         default:  return "Unknown exception was occurred while ...";
     }
 }
