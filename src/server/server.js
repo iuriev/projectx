@@ -69,7 +69,7 @@ server.get('/teacher', function (req, res) {
 
 server.post('/update-teacher', function (req, res) {
     var sql = `UPDATE teacher SET (login,password,email,phone) VALUES ( $2, $3, $4, $5) WHERE id = $1;`;
-    client.query(sql, [req.body.login, req.body.login, req.body.password, req.body.email, req.body.phone], (err, response) => {
+    client.query(sql, [req.body.id, req.body.login, req.body.password, req.body.email, req.body.phone], (err, response) => {
         if (err) {
             res.status(502).send("SERVER ERROR");
         } else {
