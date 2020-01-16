@@ -4,4 +4,5 @@ module.exports = {
     pathStudentsPage: "students.html",
     pathRegistrationPage: "registration.html",
     pathAuthorizationPage: "authorization.html",
+    pathAccount: "account.html"
 };

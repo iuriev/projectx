@@ -1,13 +1,19 @@
 require("./styles/index.less");
 var utils = require('./helpers/utils.js');
-var xhr = new XMLHttpRequest();
-window.onload = function () {
+var constants = require('./static/constants')
+var xhr;
+window.addEventListener('load', function(){
+    xhr = new XMLHttpRequest();
     importStudent();
     document.getElementById('myLoginName').innerHTML = 'You are logged in as ' + localStorage.getItem("UserLogin");
     document.getElementById('btnCreate').addEventListener('click', createStudent);
     document.getElementById('fullScreen').addEventListener('click', fullScreen);
     document.getElementById('logout').addEventListener('click', logout);
-};
+    document.getElementById('account').addEventListener('click', function() {
+        utils.changeLocation(constants.pathAccount);
+    })
+});
+
 
 function fullScreen() {
     if (document.fullscreenElement) {
@@ -17,9 +23,10 @@ function fullScreen() {
     }
 }
 
+
 function logout() {
     localStorage.clear();
-    window.location.href = 'authorization.html';
+    utils.changeLocation(constants.pathAuthorizationPage);
 }
 
 function drawHeader() {
@@ -121,7 +128,7 @@ function cansel() {
 
 function importStudent() {
     var id = localStorage.getItem("UserID");
-    xhr.open("GET", `http://localhost:3001/all-students?id=${id}`, true);
+    xhr.open("GET", `${constants.server}all-students?id=${id}`, true);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = function () {//Вызывает функцию при смене состояния.
         if (xhr.readyState === 4 && xhr.status === 200) {
@@ -148,13 +155,14 @@ function createStudent() {
             ht: ht,
             teacherId: userID
         };
-        xhr.open("POST", 'http://localhost:3001/create-student');
+        xhr.open("POST", `${constants.server}create-student`);
         xhr.setRequestHeader("Content-type", "application/json");
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 importStudent();
             }
         };
+        
         xhr.send(JSON.stringify(requestBody));
     }
 }
@@ -168,7 +176,7 @@ function updateStudent() {
         age: document.getElementById(`inputAge${id}`).value,
         ht: document.getElementById(`inputHt${id}`).value
     };
-    xhr.open("POST", 'http://localhost:3001/update-student-info', true);
+    xhr.open("POST", `${constants.server}update-student-info`, true);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
@@ -181,7 +189,7 @@ function deleteStudent() {
     var requestBody = {
         id: this.id.substring(9, this.id.length)
     };
-    xhr.open("POST", 'http://localhost:3001/delete-student', true);
+    xhr.open("POST", `${constants.server}delete-student`, true);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
