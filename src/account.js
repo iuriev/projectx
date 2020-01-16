@@ -1,3 +1,4 @@
+require("./styles/index.less");
 var constants = require('./static/constants');
 var utils = require('./helpers/utils.js');
 var xhr;
