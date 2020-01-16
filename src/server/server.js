@@ -56,6 +56,28 @@ server.get('/all-students', function (req, res) {
     });
 });
 
+server.get('/teacher', function (req, res) {
+    var sql = `SELECT login,password,email,phone FROM teacher WHERE id = $1;`;
+    client.query(sql, [req.query.id], (err, response) => {
+        if (err) {
+            res.status(500).send("SERVER ERROR");
+        } else {
+            res.status(200).json(response.rows);
+        }
+    });
+});
+
+server.post('/update-teacher', function (req, res) {
+    var sql = `UPDATE teacher SET (login,password,email,phone) VALUES ( $2, $3, $4, $5) WHERE id = $1;`;
+    client.query(sql, [req.body.id, req.body.login, req.body.password, req.body.email, req.body.phone], (err, response) => {
+        if (err) {
+            res.status(502).send("SERVER ERROR");
+        } else {
+            res.status(200).send();
+        }
+    });
+});
+
 server.post('/create-student', function (req, res) {
     var sql = `INSERT INTO account (fn,ln,age,ht,teacher_id) VALUES ($1, $2,$3, $4, $5) ;`;
     client.query(sql, [req.body.fn, req.body.ln, req.body.age, req.body.ht, req.body.teacherId], (err, response) => {
