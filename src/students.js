@@ -1,5 +1,6 @@
 require("./styles/index.less");
 var utils = require('./helpers/utils.js');
+var constants = require('./static/constants')
 var xhr = new XMLHttpRequest();
 window.onload = function () {
     importStudent();
@@ -7,6 +8,9 @@ window.onload = function () {
     document.getElementById('btnCreate').addEventListener('click', createStudent);
     document.getElementById('fullScreen').addEventListener('click', fullScreen);
     document.getElementById('logout').addEventListener('click', logout);
+    document.getElementById('account').addEventListener('click', function() {
+        utils.changeLocation(constants.pathAccount);
+    })
 };
 
 function fullScreen() {
@@ -16,6 +20,7 @@ function fullScreen() {
         document.documentElement.requestFullscreen();
     }
 }
+
 
 function logout() {
     localStorage.clear();
@@ -155,6 +160,7 @@ function createStudent() {
                 importStudent();
             }
         };
+        
         xhr.send(JSON.stringify(requestBody));
     }
 }

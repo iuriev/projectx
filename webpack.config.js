@@ -9,6 +9,7 @@ module.exports = {
         authorization: './src/authorization.js',
         registration: './src/registration.js',
         students: './src/students.js',
+        account: './src/account.js'
     },
     output: {
         filename: '[name].[hash:8].js',
@@ -63,17 +64,22 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'authorization.html',
             template: 'public/authorization.html',
-            excludeChunks: ['registration', 'students']
+            excludeChunks: ['registration', 'students', 'account']
         }),
         new HtmlWebpackPlugin({
             filename: 'registration.html',
             template: 'public/registration.html',
-            excludeChunks: ['authorization', 'students']
+            excludeChunks: ['authorization', 'students', 'account']
         }),
         new HtmlWebpackPlugin({
             filename: 'students.html',
             template: 'public/students.html',
-            excludeChunks: ['authorization', 'registration']
+            excludeChunks: ['authorization', 'registration', 'account']
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'account.html',
+            template: 'public/account.html',
+            excludeChunks: ['authorization', 'registration', 'students']
         }),
         new webpack.HotModuleReplacementPlugin()
     ],
