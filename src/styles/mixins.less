@@ -30,17 +30,20 @@
 }
 
 .titleReg_Log(@padtop: 50px; @sizeOfText: 20px){
-    text-align: center;
-    font-size: @sizeOfText;
-    font-family: 'Roboto Slab', serif;
-    padding-bottom: 15px;
-    font-weight: bold;
-    margin-top: @padtop;
+  text-align: center;
+  font-size: @sizeOfText;
+  font-family: 'Roboto Slab', serif;
+  padding-bottom: 15px;
+  font-weight: bold;
+  margin-top: @padtop;
 }
 
-.input(@widthOfInput: 50%){
+.input(@widthOfInput: 50%, @marginTop: auto){
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: @marginTop;
 
   & input{
     width: @widthOfInput;
@@ -71,4 +74,15 @@
     text-transform: uppercase;
     font-weight: bold;
   }
+}
+
+.error{
+  color: red;
+  font-size: 13px;
+  text-align: center;
+  visibility: visible;
+}
+
+.registration_input__error{
+  visibility: hidden;
 }

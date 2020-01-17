@@ -1,48 +1,63 @@
 document.getElementById('registerBtn').addEventListener('click', teacherRegister);
 require("./styles/index.less");
+const constants  = require('./static/constants.js');
 var utils = require('./helpers/utils.js');
-function teacherRegister() {
-    var login = document.getElementById('loginReg').value;
-    var password1 = document.getElementById('passwordReg1').value;
-    var password2 = document.getElementById('passwordReg2').value;
-    var email = document.getElementById('emailReg').value;
-    var phone = document.getElementById('telReg').value;
+var stateOfFilds = false;
+let login;
+let password1;
+let password2;
+let email;
+let phone;
 
-    if (login !== "" && password1 !== "" && password2 !== "" && email !== "" && phone !== "") {
-        if (password1.length > 2 || password2.length > 2) {
-            if (password2 === password1) {
-                if (login.length > 2) {
-                    var xhr = new XMLHttpRequest();
-                    var requestBody = {
-                        login: login,
-                        password: password1,
-                        email: email,
-                        phone: phone
-                    };
-                    xhr.open("POST", 'http://localhost:3001/create-teacher');
-                    xhr.setRequestHeader("Content-type", "application/json");
-                    xhr.onreadystatechange = function () {
-                        if (xhr.readyState === 4) {
-                            if (xhr.status === 200 && xhr.responseText === "") {
-                                localStorage.setItem("regSuccess", 1);
-                                utils.changeLocation('authorization.html')
-                            }
-                            if (xhr.status === 502) {
-                                alert(utils.getErrorMessageByStatusCode(xhr.status));
-                            }
-                        }
-                    };
-                    xhr.send(JSON.stringify(requestBody));
-                } else {
-                    alert("Логин должен быть длиннее 3 символа");
-                }
-            } else {
-                alert("Пароли не совпадают");
-            }
-        } else {
-            alert("Пароли должны быть длиной более 2 символов");
-        }
-    } else {
-        alert("Заполните все поля");
+function valFormsReg() {
+    var errorAll = document.querySelector('.registration_inputAll__error');
+    if (login && password1 && password2 && email && phone) {
+        errorAll.classList.add('registration_input__error');
+        errorAll.classList.remove('error');
+        var logValRes = utils.valLoginReg(login);
+        var pasValRes = utils.valPasswordReg(password1);
+        var againValRes = utils.valPasswordAgainReg(password1, password2);
+        var mailValRes = utils.valMailReg(email);
+        var phoneValRes = utils.valPhoneReg(phone);
+        stateOfFilds = logValRes && pasValRes && againValRes && mailValRes && phoneValRes;
+    }else{
+        errorAll.classList.remove('registration_input__error');
+        errorAll.classList.add('error');
     }
 }
+
+function teacherRegister(){
+    if(stateOfFilds){
+        let xhr = new XMLHttpRequest();
+        let requestBody = {
+            login: login,
+            password: password1,
+            email: email,
+            phone: phone
+        };
+        xhr.open("POST", `${constants.server}create-teacher`);
+        xhr.setRequestHeader("Content-type", "application/json");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200 && xhr.responseText === "") {
+                    localStorage.setItem("regSuccess", 1);
+                    utils.changeLocation('authorization.html')
+                }
+                if (xhr.status === 502) {
+                    alert(utils.getErrorMessageByStatusCode(xhr.status));
+                }
+            }
+        };
+        xhr.send(JSON.stringify(requestBody));
+    }
+}
+
+document.addEventListener('keyup', function() {
+    login = document.getElementById('loginReg').value;
+    password1 = document.getElementById('passwordReg1').value;
+    password2 = document.getElementById('passwordReg2').value;
+    email = document.getElementById('emailReg').value;
+    phone = document.getElementById('telReg').value;
+    valFormsReg();
+});
+
