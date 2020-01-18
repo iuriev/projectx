@@ -5,7 +5,7 @@
   background-color: @registrationRegistration;
 
   .registration{
-    .wrapper-contentBlock(25%; 60%; 350px);
+    .wrapper-contentBlock(25%; 55%; 350px);
     background-color: @registrationWindowReg;
     border-radius: 2px;
 
@@ -19,38 +19,24 @@
       text-transform: uppercase;
       font-weight: bold;
       font-family: 'Roboto Slab', serif;
-    }
-
-    .reg-block_triangles {
-      display: flex;
-      justify-content: space-between;
-      width: 110.1%;
-      margin-left: -20px;
-
-      & .title_left {
-        width: 0px;
-        height: 0px;
-        border-style: inset;
-        border-width: 20px 0px 0px 20px;
-        border-color: @registrationAngleColor transparent transparent transparent;
-      }
-
-      & .title_right {
-        width: 0px;
-        height: 0px;
-        border-style: inset;
-        border-width: 20px 19px 0px 0px;
-        border-color: @registrationAngleColor transparent transparent transparent;
-      }
+      margin-bottom: 10px;
     }
 
     & .registration_input{
-      .input(80%);
+      .input(80%, -10px);
       padding-top: 20px;
     }
 
+    & .registration_input__error{
+      color: red;
+      font-size: 13px;
+      text-align: center;
+      height: 10px;
+      }
+
+
     & .registration_buttonRegister{
-      margin-top: 30px;
+      margin-top: 10px;
       .btn_Log_Reg(80%; 10px);
 
       & button{
@@ -65,5 +51,6 @@
         }
       }
     }
+
   }
 }
