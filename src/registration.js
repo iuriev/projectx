@@ -1,13 +1,25 @@
-document.getElementById('registerBtn').addEventListener('click', teacherRegister);
 require("./styles/index.less");
 const constants  = require('./static/constants.js');
-var utils = require('./helpers/utils.js');
-var stateOfFilds = false;
+let utils = require('./helpers/utils.js');
+let stateOfFilds;
 let login;
 let password1;
 let password2;
 let email;
 let phone;
+
+window.addEventListener("load", function () {
+    stateOfFilds = false;
+    document.getElementById('registerBtn').addEventListener('click', teacherRegister);
+    document.addEventListener('keyup', function() {
+        login = document.getElementById('loginReg').value;
+        password1 = document.getElementById('passwordReg1').value;
+        password2 = document.getElementById('passwordReg2').value;
+        email = document.getElementById('emailReg').value;
+        phone = document.getElementById('telReg').value;
+        valFormsReg();
+    });
+});
 
 function valFormsReg() {
     var errorAll = document.querySelector('.registration_inputAll__error');
@@ -49,13 +61,4 @@ function teacherRegister(){
         xhr.send(JSON.stringify(requestBody));
     }
 }
-
-document.addEventListener('keyup', function() {
-    login = document.getElementById('loginReg').value;
-    password1 = document.getElementById('passwordReg1').value;
-    password2 = document.getElementById('passwordReg2').value;
-    email = document.getElementById('emailReg').value;
-    phone = document.getElementById('telReg').value;
-    valFormsReg();
-});
 

@@ -26,7 +26,7 @@ function validateInputPass(currentValue) {
 }
 
 function valLoginReg(login) {
-    if(login[0].match(/[a-zA-Z]/) && login.length > 5){
+    if(login[0].match(/[a-zA-Z]/) && login.length > 1){
         errorLogin.innerHTML = constants.instructionEmpty;
         return true;
     }else{
@@ -36,7 +36,7 @@ function valLoginReg(login) {
 }
 
 function valPasswordReg(password) {
-    if(password.length > 5){
+    if(password.length > 4){
         errorPassword1.innerHTML = constants.instructionEmpty;
         return true;
     }else{
