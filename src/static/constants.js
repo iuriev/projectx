@@ -4,4 +4,13 @@ module.exports = {
     pathStudentsPage: "students.html",
     pathRegistrationPage: "registration.html",
     pathAuthorizationPage: "authorization.html",
+    instructionErrLogAuth: 'Incorrect a login',
+    instructionErrPassAuth: 'Incorrect a password',
+    instructionErrAllReg: 'Fill in all the fields',
+    instructionErrLogReg: 'Enter more than five char and begin with a letter',
+    instructionErrPassReg: 'Password must be longer than 5 characters',
+    instructionErrPassAgainReg: 'Passwords must match',
+    instructionErrMailReg: 'Enter correct Email',
+    instructionErrPhoneReg: 'Your number should start with "+38"',
+    instructionEmpty: '',
 };

@@ -12,8 +12,7 @@ let phone;
 function valFormsReg() {
     var errorAll = document.querySelector('.registration_inputAll__error');
     if (login && password1 && password2 && email && phone) {
-        errorAll.classList.add('registration_input__error');
-        errorAll.classList.remove('error');
+        errorAll.innerHTML = '';
         var logValRes = utils.valLoginReg(login);
         var pasValRes = utils.valPasswordReg(password1);
         var againValRes = utils.valPasswordAgainReg(password1, password2);
@@ -21,8 +20,7 @@ function valFormsReg() {
         var phoneValRes = utils.valPhoneReg(phone);
         stateOfFilds = logValRes && pasValRes && againValRes && mailValRes && phoneValRes;
     }else{
-        errorAll.classList.remove('registration_input__error');
-        errorAll.classList.add('error');
+        errorAll.innerHTML = constants.instructionErrAllReg;
     }
 }
 
