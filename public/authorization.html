@@ -7,11 +7,16 @@
 </head>
 <body>
 <div class="wrapper">
+    <div class="language">
+        <select class="language_select">
+            <option value="RU" class="language_select__item">Russian</option>
+            <option value="ENG" class="language_select__item">English</option>
+        </select>
+    </div>
     <div class="authorization-block">
         <div class="authorization-block__input-section input-section">
             <label class="input-section__label-login label-all" for="inputLogin">Enter your login:</label>
             <input class="input-section__input-login input-all" id="inputLogin" type="text" placeholder="login..."/>
-            <div class="input-section__error-login"></div>
         </div>
         <div class="authorization-block__input-section input-section">
             <label class="input-section__label-password label-all" for="inputPass">Enter your password:</label>
@@ -22,6 +27,7 @@
             <button class="button-section__btn-login btn-all" id="login">Log In</button>
             <button class="button-section__btn-registration btn-all" id="register">Registration</button>
         </div>
+        <div id="regText">You are successfully registered</div>
     </div>
 </div>
 </body>

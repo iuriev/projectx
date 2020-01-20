@@ -1,6 +1,5 @@
 const constants  = require('../static/constants.js');
-let textErrorLogin = document.querySelector('.input-section__error-login'),
-    textErrorPassword = document.querySelector('.input-section__error-password'),
+let textErrorPassword = document.querySelector('.input-section__error-password'),
     errorLogin = document.querySelector('.registration_inputLogin__error'),
     errorPassword1 = document.querySelector('.registration_inputPassword__error'),
     errorPassword2 = document.querySelector('.registration_inputAgainPassword__error'),
@@ -14,15 +13,13 @@ function changeLocation(location) {
     window.location.href = location;
 }
 
-function validateInputLogin(currentValue) {
-    if(!currentValue){
-        textErrorLogin.innerHTML = constants.instructionErrLogAuth;
+function validateInput(currentValuePassword, currentValueLogin) {
+    if(!currentValueLogin || !currentValuePassword){
+        errorAuth();
     }
 }
-function validateInputPass(currentValue) {
-    if(!currentValue){
-        textErrorPassword.innerHTML = constants.instructionErrPassAuth;
-    }
+function errorAuth() {
+    textErrorPassword.innerHTML = constants.instructionErrAuth;
 }
 
 function valLoginReg(login) {
@@ -86,12 +83,12 @@ function getErrorMessageByStatusCode(statusCode) {
 
 module.exports = {
     changeLocation: changeLocation,
-    validateInputLogin: validateInputLogin,
-    validateInputPass: validateInputPass,
+    validateInput: validateInput,
     getErrorMessageByStatusCode: getErrorMessageByStatusCode,
     valLoginReg: valLoginReg,
     valPasswordReg: valPasswordReg,
     valPasswordAgainReg: valPasswordAgainReg,
     valMailReg: valMailReg,
-    valPhoneReg: valPhoneReg
+    valPhoneReg: valPhoneReg,
+    errorAuth: errorAuth,
 };

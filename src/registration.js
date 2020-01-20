@@ -7,19 +7,24 @@ let password1;
 let password2;
 let email;
 let phone;
+let count = 0;
 
 window.addEventListener("load", function () {
     stateOfFilds = false;
     document.getElementById('registerBtn').addEventListener('click', teacherRegister);
-    document.addEventListener('keyup', function() {
+    document.addEventListener('keyup', downButton);
+});
+
+function downButton() {
+    if(count > 0) {
         login = document.getElementById('loginReg').value;
         password1 = document.getElementById('passwordReg1').value;
         password2 = document.getElementById('passwordReg2').value;
         email = document.getElementById('emailReg').value;
         phone = document.getElementById('telReg').value;
         valFormsReg();
-    });
-});
+    }
+}
 
 function valFormsReg() {
     var errorAll = document.querySelector('.registration_inputAll__error');
@@ -37,6 +42,8 @@ function valFormsReg() {
 }
 
 function teacherRegister(){
+    count++;
+    downButton();
     if(stateOfFilds){
         let xhr = new XMLHttpRequest();
         let requestBody = {

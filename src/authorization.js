@@ -6,7 +6,11 @@ var inputPass;
 var xhr;
 
 window.addEventListener("load", function () {
-    // document.getElementById('regText').hidden = localStorage.getItem("regSuccess") === null; // FIXME
+    if(localStorage.getItem("regSuccess") === 1){
+        document.getElementById('regText').isVisible();
+    }else{
+        document.getElementById('regText').hidden;
+    }
     document.getElementById('login').addEventListener('click', processAuthorization);
     document.getElementById('register').addEventListener('click', function () {
         utils.changeLocation(constants.pathRegistrationPage);
@@ -27,7 +31,7 @@ function processAuthorization() {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
             if (xhr.status === 501 && xhr.responseText === "SERVER ERROR") {
-                alert(utils.getErrorMessageByStatusCode(xhr.status));
+                utils.errorAuth();
             }
             if (xhr.status === 200) {
                 var responseArray = JSON.parse(xhr.responseText);
@@ -41,6 +45,6 @@ function processAuthorization() {
 }
 
 function validateForm() {
-    utils.validateInputLogin(inputLogin.value); // FIXME
-    utils.validateInputPass(inputPass.value);   // FIXME
+    // utils.validateInputLogin(inputLogin.value); // FIXME
+    utils.validateInput(inputPass.value, inputLogin.value);   // FIXME
 }
