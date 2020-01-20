@@ -1,30 +1,37 @@
 @import "./authorization.less";
 @import "./registration.less";
+@import "./account.less";
+@import "./variables.less";
 
 * {
   margin: 0; padding: 0;
 }
 .wrapper_students{
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  flex-direction: row;
+  // justify-content: center;
+  // align-items: center;
   width: 100%;
+  
 
   & .menu {
     height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 1%;
     position: sticky;
-    top: 0;
-    background-color: #dadada;
+    background-color: @mainColor;
     width: 100%;
-    border-bottom: 2px solid grey;
+    border-radius: 15px;
+
+    & .menu__header{
+      display: flex;
+    }
+     
 
     & .menu__inputs{
       display: flex;
+      flex-direction: column;
       justify-content: space-between;
       width: 50%;
 
@@ -37,7 +44,7 @@
           width: 100%;
           height: 100%;
           border-radius: 5px;
-          background-color: rgb(214, 214, 214);
+          background-color: #D8E6F3;
 
           &:focus{
             background-color: white;
@@ -82,7 +89,7 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    height: auto;
+    height: 100vh;
 
     & .table__dynamic{
       width: 70vw;
