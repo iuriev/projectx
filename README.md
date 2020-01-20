@@ -12,20 +12,20 @@
 
 CREATE TABLE teacher(
 id serial PRIMARY KEY,
-login character varying (20) NOT NULL UNIQUE,
-password character varying (20) NOT NULL,
-email character varying (25) NOT NULL,
-phone character varying (15) NOT NULL
+login character (20) NOT NULL UNIQUE,
+password character (20) NOT NULL,
+email character (20) NOT NULL,
+phone character (10) NOT NULL
 );
 
 * create table 'account' using scripts
 
 CREATE TABLE account(
 id serial PRIMARY KEY,
-fn character varying (20) NOT NULL,
-ln character varying (20) NOT NULL,
+fn character (30) NOT NULL,
+ln character (20) NOT NULL,
 age INTEGER  NOT NULL,
-ht character varying (20) NOT NULL,
+ht character (10) NOT NULL,
 teacher_id INTEGER NOT NUll
 );
 
