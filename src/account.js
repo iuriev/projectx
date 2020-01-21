@@ -21,7 +21,12 @@ window.addEventListener('load', function () {
     });
     document.querySelector('#savebtn').addEventListener('click', function() {
         if(!utils.valLoginReg(login.value) || !utils.valMailReg(email.value) || !utils.valPhoneReg(phone.value) || !utils.valPasswordReg(password.value)) {
-            return;
+            document.addEventListener('keyup', function(){
+                utils.valLoginReg(login.value);
+                utils.valMailReg(email.value);
+                utils.valPhoneReg(phone.value);
+                utils.valPasswordReg(password.value);
+            });
         } else{
             alert(constants.updateSuccess);
             updateInfo();
