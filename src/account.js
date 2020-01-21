@@ -20,7 +20,12 @@ window.addEventListener('load', function () {
         utils.changeLocation(constants.pathStudentsPage);
     });
     document.querySelector('#savebtn').addEventListener('click', function() {
-        updateInfo();
+        if(!utils.valLoginReg(login.value) || !utils.valMailReg(email.value) || !utils.valPhoneReg(phone.value) || !utils.valPasswordReg(password.value)) {
+            return;
+        } else{
+            alert(constants.updateSuccess);
+            updateInfo();
+        }
     });
 })
 

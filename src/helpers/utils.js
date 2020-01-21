@@ -80,7 +80,16 @@ function getErrorMessageByStatusCode(statusCode) {
         default:  return "Unknown exception was occurred while ...";
     }
 }
-
+function validateCreateInput(firstName, lastName, homeTown, age) {
+    if(firstName.match(/[0-9]/) || lastName.match(/[0-9]/) || homeTown.match(/[0-9]/)) {
+        alert(constants.instructionCreateNumbersAlert);
+        return false;
+    } else if(!firstName || !lastName || !age || !homeTown){
+        alert(constants.instructionCreateEmptyAlert);
+        return false;
+    }
+    else { return true;}
+}
 module.exports = {
     changeLocation: changeLocation,
     validateInput: validateInput,
@@ -91,4 +100,5 @@ module.exports = {
     valMailReg: valMailReg,
     valPhoneReg: valPhoneReg,
     errorAuth: errorAuth,
+    validateCreateInput: validateCreateInput,
 };

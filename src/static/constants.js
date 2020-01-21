@@ -12,5 +12,8 @@ module.exports = {
     instructionErrPassAgainReg: 'Passwords must match',
     instructionErrMailReg: 'Enter correct Email: like mymail@mail.com',
     instructionErrPhoneReg: 'Your number should start with "+38" and must be 13 characters long',
-    instructionEmpty: ''
+    instructionEmpty: '',
+    instructionCreateNumbersAlert: 'fields "First Name", "Last Name", "Hometown" must not contain numbers',
+    instructionCreateEmptyAlert: 'If you want to add new student please fill all inputs',
+    updateSuccess: 'Your data was successfully updated',
 };

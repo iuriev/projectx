@@ -2,11 +2,26 @@ require("./styles/index.less");
 var utils = require('./helpers/utils.js');
 var constants = require('./static/constants')
 var xhr;
+var fn;
+var ln;
+var age;
+var ht;
+
 window.addEventListener('load', function(){
     xhr = new XMLHttpRequest();
+    fn = document.getElementById('firstName');
+    ln = document.getElementById('lastName');
+    age = document.getElementById('age');
+    ht = document.getElementById('homeTown')
     importStudent();
-    document.getElementById('myLoginName').innerHTML = 'You are logged in as ' + localStorage.getItem("UserLogin");
-    document.getElementById('btnCreate').addEventListener('click', createStudent);
+    document.getElementById('myLoginName').innerHTML = 'Login as ' + localStorage.getItem("UserLogin");
+    document.getElementById('btnCreate').addEventListener('click', function() {
+        
+        if(utils.validateCreateInput(fn.value, ln.value, ht.value, age.value)) {
+            createStudent()
+        }
+        
+    });
     document.getElementById('fullScreen').addEventListener('click', fullScreen);
     document.getElementById('logout').addEventListener('click', logout);
     document.getElementById('account').addEventListener('click', function() {
@@ -69,12 +84,14 @@ function drawtable(temp) {
         var btnUpdate = document.createElement("button");
         btnUpdate.id = "updateBtn" + temp[k][col[0]];
         btnUpdate.innerHTML = "Update";
+        btnUpdate.classList.add('update-btn');
         btnUpdate.addEventListener('click', updatePreparation);
         tr.appendChild(btnUpdate);
 
         var btnDelete = document.createElement("button");
         btnDelete.id = "deleteBtn" + temp[k][col[0]];
         btnDelete.innerHTML = "Delete";
+        btnDelete.classList.add('delete-btn');
         btnDelete.addEventListener('click', deleteStudent);
         tr.appendChild(btnDelete);
     }
@@ -103,18 +120,20 @@ function updatePreparation() {
     var ht = document.getElementById('ht' + id);
     var htText = ht.textContent;
     ht.innerHTML = `<input type='text' id = inputHt${id}  value= ${htText} >`;
-
+    
     var parent = this.parentNode;
 
     var buttonSave = document.createElement('button');
     buttonSave.innerHTML = 'Save';
     buttonSave.id = `save${id}`;
+    buttonSave.classList.add('save-btn')
     parent.replaceChild(buttonSave, this);
     buttonSave.after(this);
     buttonSave.addEventListener('click', updateStudent);
 
     var buttonCancel = document.createElement('button');
     buttonCancel.innerHTML = 'Cansel';
+    buttonCancel.classList.add('cancel-btn')
     buttonCancel.id = `cansel${id}`;
     buttonCancel.addEventListener('click', cansel);
     parent.replaceChild(buttonCancel, this);
@@ -140,19 +159,16 @@ function importStudent() {
 }
 
 function createStudent() {
-    var fn = document.getElementById('firstName').value;
-    var ln = document.getElementById('lastName').value;
-    var age = document.getElementById('age').value;
-    var ht = document.getElementById('homeTown').value;
+    
     if (!fn || !ln || !age || !ht) {
         alert("If you want to add new student please fill all inputs");
     } else {
         var userID = localStorage.getItem("UserID");
         var requestBody = {
-            fn: fn,
-            ln: ln,
-            age: age,
-            ht: ht,
+            fn: fn.value,
+            ln: ln.value,
+            age: age.value,
+            ht: ht.value,
             teacherId: userID
         };
         xhr.open("POST", `${constants.server}create-student`);
@@ -176,14 +192,20 @@ function updateStudent() {
         age: document.getElementById(`inputAge${id}`).value,
         ht: document.getElementById(`inputHt${id}`).value
     };
-    xhr.open("POST", `${constants.server}update-student-info`, true);
-    xhr.setRequestHeader("Content-type", "application/json");
-    xhr.onreadystatechange = function () {
+    if(utils.validateCreateInput(requestBody.fn, requestBody.ln, requestBody.ht, requestBody.age)){
+        xhr.open("POST", `${constants.server}update-student-info`, true);
+        xhr.setRequestHeader("Content-type", "application/json");
+        xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
                 importStudent();
         }
     };
     xhr.send(JSON.stringify(requestBody));
+    } else {
+        return;
+    }
+    
+    
 }
 function deleteStudent() {
     var requestBody = {

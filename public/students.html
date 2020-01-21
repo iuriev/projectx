@@ -7,27 +7,27 @@
 </head>
 <body>
 <main class="wrapper_students">
-    <div class="language">
-        <select class="language_select">
-            <option value="RU" class="language_select__item">Russian</option>
-            <option value="ENG" class="language_select__item">English</option>
-        </select>
-    </div>
+    
     <div class="menu">
         <div class="menu__header">
-            <div>
+            <div class="login-as">
                 <p id="myLoginName"></p>
             </div>
             <div>
-                <button id="logout">Logout</button>
+                <button id="logout" class="header__buttons"><img src="../assets/img/logout.png" alt="Logout" title="Logout"></button>
             </div>
             <div>
-                <button id="fullScreen">FullScreen</button>
+                <button id="fullScreen" class="header__buttons"><img src="../assets/img/fullscreen.png" alt="FullScreen" title="FullScreen"></button>
             </div>
             <div>
-                <button id="account">Account</button>
+                <button id="account" class="header__buttons"><img src="../assets/img/account.png" alt="MyAccount" title="MyAccount"></button>
             </div>
-
+            <div >
+                <select class="language_select">
+                    <option value="RU" class="language_select__item">Russian</option>
+                    <option value="ENG" class="language_select__item">English</option>
+                </select>
+            </div>
         </div>
         <div class="menu__inputs">
 
@@ -50,7 +50,7 @@
         </div>
         <div class="menu__buttons">
             <div class="buttons__wrapper">
-                <button class="button" id="btnCreate">Create</button>
+                <button class="button" id="btnCreate" title="Create Student">Create</button>
             </div>
 
         </div>
