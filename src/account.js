@@ -4,6 +4,7 @@ var utils = require('./helpers/utils.js');
 var xhr;
 var login;
 var password;
+var password2;
 var email;
 var phone;
 var id;
@@ -12,6 +13,7 @@ window.addEventListener('load', function () {
     id = localStorage.getItem("UserID");
     login = document.querySelector('#login');
     password = document.querySelector('#pass');
+    password2 = document.querySelector('#pass2');
     email = document.querySelector('#email');
     phone = document.querySelector('#phone');
     xhr = new XMLHttpRequest();
@@ -20,12 +22,13 @@ window.addEventListener('load', function () {
         utils.changeLocation(constants.pathStudentsPage);
     });
     document.querySelector('#savebtn').addEventListener('click', function() {
-        if(!utils.valLoginReg(login.value) || !utils.valMailReg(email.value) || !utils.valPhoneReg(phone.value) || !utils.valPasswordReg(password.value)) {
+        if(!utils.valLoginReg(login.value) || !utils.valMailReg(email.value) || !utils.valPhoneReg(phone.value) || !utils.valPasswordReg(password.value)|| !utils.valPasswordAgainReg(password.value, password2.value)) {
             document.addEventListener('keyup', function(){
                 utils.valLoginReg(login.value);
                 utils.valMailReg(email.value);
                 utils.valPhoneReg(phone.value);
                 utils.valPasswordReg(password.value);
+                utils.valPasswordAgainReg(password.value, password2.value);
             });
         } else{
             alert(constants.updateSuccess);
