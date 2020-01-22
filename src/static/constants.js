@@ -5,15 +5,6 @@ module.exports = {
     pathRegistrationPage: "registration.html",
     pathAuthorizationPage: "authorization.html",
     pathAccount: "account.html",
-    instructionErrAuth: 'Enter correct data',
-    instructionErrAllReg: 'Fill in all the fields',
-    instructionErrLogReg: 'Enter more than five char and begin with a letter',
-    instructionErrPassReg: 'Password must be longer than 5 characters',
-    instructionErrPassAgainReg: 'Passwords must match',
-    instructionErrMailReg: 'Enter correct Email: like mymail@mail.com',
-    instructionErrPhoneReg: 'Your number should start with "+38" and must be 13 characters long',
+
     instructionEmpty: '',
-    instructionCreateNumbersAlert: 'fields "First Name", "Last Name", "Hometown" must not contain numbers',
-    instructionCreateEmptyAlert: 'If you want to add new student please fill all inputs',
-    updateSuccess: 'Your data was successfully updated',
 };
