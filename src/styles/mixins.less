@@ -1,0 +1,87 @@
+
+.wrapper{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper-contentBlock(@widthOfblock: 50%; @minHeight: 50%; @minWidth: 450px) {
+  width: @widthOfblock;
+  min-height: @minHeight;
+  min-width: @minWidth;
+  -webkit-box-shadow: 0 0 7px 1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0 0 7px 1px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 7px 1px rgba(0, 0, 0, 0.75);
+}
+
+.titleReg_Log(@padtop: 50px; @sizeOfText: 20px){
+  text-align: center;
+  font-size: @sizeOfText;
+  font-family: 'Roboto Slab', serif;
+  padding-bottom: 15px;
+  font-weight: bold;
+  margin-top: @padtop;
+}
+
+.input(@widthOfInput: 50%, @marginTop: auto){
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: @marginTop;
+
+  & input{
+    width: @widthOfInput;
+    min-width: 200px;
+    background: transparent;
+    border: none;
+    outline:none;
+    font-size: 18px;
+    color: darken(#D9D9D9, 60%);
+    border-bottom: 2px solid darken(#D9D9D9, 20%);
+    text-align:center;
+  }
+}
+
+.btn_Log_Reg(@widthOfBtn: 50%; @paddingInBtn: 5px){
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  & button{
+    padding: @paddingInBtn;
+    border: none;
+    border-radius: 50px;
+    width: @widthOfBtn;
+    cursor: pointer;
+    margin-top: 3px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+}
+
+.language{
+  position: absolute;
+  top: 10px;
+  right: 30px;
+
+  &_select{
+    outline: none;
+    width: 100px;
+    height: 30px;
+    font-size: 15px;
+
+    &__item{
+      outline: none;
+      font-size: 13px;
+    }
+  }
+}
+.login-as {
+  top: 10px;
+  left: 30px;
+  font-weight: bold;
+}

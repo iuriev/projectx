@@ -6,25 +6,42 @@
 * install git https://git-scm.com/
 --- 
 
-* Enter pgAdmin
-* create BD 'guru99' database
-* create table 'account' with columns:
+* Open pgAdmin and:
+* create BD 'students' database
+* create table 'teacher' using scripts
 
-    1. user_id serial primary key
-    2. fn  varying 50 NOT NULL
-    3. ln character varying 50 NOT NULL
-    4. age integer  NOT NULL
-    5. ht character varying 50 NOT NULL
+CREATE TABLE teacher(
+id serial PRIMARY KEY,
+login character varying (20) NOT NULL UNIQUE,
+password character varying (20) NOT NULL,
+email character varying (25) NOT NULL,
+phone character varying (15) NOT NULL
+);
+
+* create table 'account' using scripts
+
+CREATE TABLE account(
+id serial PRIMARY KEY,
+fn character varying (20) NOT NULL,
+ln character varying (20) NOT NULL,
+age INTEGER  NOT NULL,
+ht character varying (20) NOT NULL,
+teacher_id INTEGER NOT NUll
+);
+
+ALTER TABLE account
+ADD CONSTRAINT FK_teacher
+FOREIGN KEY (teacher_id) REFERENCES teacher(id);
+
 ---
 
 * clone repository git clone https://fesmofet@bitbucket.org/fesmofet/projectx.git
 * enter to projectX folder
-* npm install in console
-* in project folder run in terminal: node app.js
+* run npm i
+* run node server
 * open index.html in Chrome
 * Done!
-
 ---
-You can also change path to your database and table in app.js connectionString variable
+You can also change path to your database and table in server.js.js connectionString variable
 
 

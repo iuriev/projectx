@@ -1,19 +1,39 @@
 {
-  "name": "qq",
-  "version": "0.0.0",
+  "name": "projectx",
+  "version": "1.0.0",
   "private": true,
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "node app.js"
+    "build": "webpack --mode production --colors --progress",
+    "build-watch": "webpack --mode development --colors --progress --watch",
+    "start-dev": "webpack-dev-server --mode development --colors --progress --open",
+    "start-server": "node ./src/server/server.js",
+    "server-dev": "nodemon ./src/server/server.js"
   },
   "dependencies": {
+    "clean-webpack-plugin": "^3.0.0",
     "cookie-parser": "~1.4.4",
+    "css-loader": "^3.4.2",
     "debug": "~2.6.9",
     "express": "4.17.1",
+    "file-loader": "^5.0.2",
+    "html-webpack-plugin": "^3.2.0",
     "http-errors": "~1.6.3",
+    "less": "^3.10.3",
+    "less-loader": "^5.0.0",
+    "mini-css-extract-plugin": "^0.9.0",
     "morgan": "~1.9.1",
-    "pg": "7.15.1"
+    "pg": "7.15.1",
+    "require": "^2.4.20",
+    "url-loader": "^3.0.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
   },
   "devDependencies": {
     "nodemon": "2.0.2"
-  }
+  },
+  "author": "",
+  "license": "ISC"
 }

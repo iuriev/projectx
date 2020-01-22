@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Students</title>
+    <link rel="shortcut icon" href="">
+</head>
+<body>
+<main class="wrapper_students">
+    
+    <div class="menu">
+        <div class="menu__header">
+            <div class="login-as">
+                <p id="myLoginName"></p>
+            </div>
+            <div>
+                <button id="logout" class="header__buttons"><img src="../assets/img/logout.png" alt="Logout" title="Logout"></button>
+            </div>
+            <div>
+                <button id="fullScreen" class="header__buttons"><img src="../assets/img/fullscreen.png" alt="FullScreen" title="FullScreen"></button>
+            </div>
+            <div>
+                <button id="account" class="header__buttons"><img src="../assets/img/account.png" alt="MyAccount" title="MyAccount"></button>
+            </div>
+            <div >
+                <select class="language_select" id="language-authorization">
+                    <option value="RU" class="language_select__item">Русский</option>
+                    <option value="EN" class="language_select__item">English</option>
+                </select>
+            </div>
+        </div>
+        <div class="menu__inputs">
+
+            <div class="inputs__wrapper">
+                <label id="labelFirstName" for="firstName"></label>
+                <input type="text" id="firstName" class="wrapper__input"/>
+            </div>
+            <div class="inputs__wrapper">
+                <label id="labelLastName" for="lastName"></label>
+                <input type="text" id="lastName" class="wrapper__input"/>
+            </div>
+            <div class="inputs__wrapper">
+                <label id="labelAge" for="age"></label>
+                <input type="number" id="age" class="wrapper__input"/>
+            </div>
+            <div class="inputs__wrapper">
+                <label id="labelCity" for="homeTown"></label>
+                <input type="text" id="homeTown" class="wrapper__input"/>
+            </div>
+        </div>
+        <div class="menu__buttons">
+            <div class="buttons__wrapper">
+                <button class="button" id="btnCreate" title="Create Student"></button>
+            </div>
+
+        </div>
+    </div>
+    <div class="table">
+        <div id="showData"></div>
+    </div>
+</main>
+</body>
+</html>
