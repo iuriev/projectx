@@ -1,11 +1,5 @@
-const constants  = require('../static/constants.js');
-let textErrorLogin = document.querySelector('.input-section__error-login'),
-    textErrorPassword = document.querySelector('.input-section__error-password'),
-    errorLogin = document.querySelector('.registration_inputLogin__error'),
-    errorPassword1 = document.querySelector('.registration_inputPassword__error'),
-    errorPassword2 = document.querySelector('.registration_inputAgainPassword__error'),
-    errorEmail = document.querySelector('.registration_inputMail__error'),
-    errorPhone = document.querySelector('.registration_inputPhone__error');
+const constants = require('../static/constants.js');
+const helpers = require('./helper');
 
 function changeLocation(location) {
     if (!window || !window.location || !window.location.href) {
@@ -14,84 +8,104 @@ function changeLocation(location) {
     window.location.href = location;
 }
 
-function validateInputLogin(currentValue) {
-    if(!currentValue){
-        textErrorLogin.innerHTML = constants.instructionErrLogAuth;
-    }
-}
-function validateInputPass(currentValue) {
-    if(!currentValue){
-        textErrorPassword.innerHTML = constants.instructionErrPassAuth;
+function validateInput(currentValuePassword, currentValueLogin) {
+    if (!currentValueLogin || !currentValuePassword) {
+        errorAuth();
     }
 }
 
+function errorAuth() {
+    let languageArray = helpers.getCurrentLanguagesSet();
+    document.querySelector('.input-section__error-password').innerHTML = languageArray.a_loginErrorMessage;
+}
+
 function valLoginReg(login) {
-    if(login[0].match(/[a-zA-Z]/) && login.length > 1){
-        errorLogin.innerHTML = constants.instructionEmpty;
+    let languageArray = helpers.getCurrentLanguagesSet();
+    if (login[0].match(/[a-zA-Z]/) && login.length > 1) {
+        document.querySelector('.registration_inputLogin__error').innerHTML = "";
         return true;
-    }else{
-        errorLogin.innerHTML = constants.instructionErrLogReg;
+    } else {
+        document.querySelector('.registration_inputLogin__error').innerHTML = languageArray.b_loginError;
         return false;
     }
 }
 
 function valPasswordReg(password) {
-    if(password.length > 4){
-        errorPassword1.innerHTML = constants.instructionEmpty;
+    let languageArray = helpers.getCurrentLanguagesSet();
+    if (password.length > 4) {
+        document.querySelector('.registration_inputPassword__error').innerHTML = "";
         return true;
-    }else{
-        errorPassword1.innerHTML = constants.instructionErrPassReg;
+    } else {
+        document.querySelector('.registration_inputPassword__error').innerHTML = languageArray.b_passwordError;
         return false;
     }
 }
 
 function valPasswordAgainReg(password1, password2) {
-    if(password2 === password1){
-        errorPassword2.innerHTML = constants.instructionEmpty;
+    let languageArray = helpers.getCurrentLanguagesSet();
+    if (password2 === password1) {
+        document.querySelector('.registration_inputAgainPassword__error').innerHTML = "";
         return true;
-    }else{
-        errorPassword2.innerHTML = constants.instructionErrPassAgainReg;
+    } else {
+        document.querySelector('.registration_inputAgainPassword__error').innerHTML = languageArray.b_passwordMachError;
         return false;
     }
 }
 
 function valMailReg(email) {
-    if(email.includes("@")){
-        errorEmail.innerHTML = constants.instructionEmpty;
+    let languageArray = helpers.getCurrentLanguagesSet();
+    if (email.includes("@")) {
+        document.querySelector('.registration_inputMail__error').innerHTML = "";
         return true;
-    }else{
-        errorEmail.innerHTML = constants.instructionErrMailReg;
+    } else {
+        document.querySelector('.registration_inputMail__error').innerHTML = languageArray.b_emailError;
         return false;
     }
 }
 
 function valPhoneReg(phone) {
-    if(phone.slice(0, 3) === "+38" && phone.length === 13){
-        errorPhone.innerHTML = constants.instructionEmpty;
+    let languageArray = helpers.getCurrentLanguagesSet();
+    if (phone.slice(0, 3) === "+38" && phone.length === 13) {
+        document.querySelector('.registration_inputPhone__error').innerHTML = "";
         return true;
-    }else{
-        errorPhone.innerHTML = constants.instructionErrPhoneReg;
+    } else {
+        document.querySelector('.registration_inputPhone__error').innerHTML = languageArray.b_phoneError;
         return false;
     }
 }
 
 function getErrorMessageByStatusCode(statusCode) {
+    let languageArray = helpers.getCurrentLanguagesSet();
     switch (statusCode) {
-        case 500: return "DB error";
-        case 501: return "Incorrect login or password";
-        case 502: return "Login is already used";
-        default:  return "Unknown exception was occurred while ...";
+        case 500:
+            return languageArray.b_dbError;
+        case 502:
+            return languageArray.b_errorLoginExist;
+    }
+}
+
+function validateCreateInput(firstName, lastName, homeTown, age) {
+    let languageArray = helpers.getCurrentLanguagesSet();
+    if (firstName.match(/[0-9]/) || lastName.match(/[0-9]/) || homeTown.match(/[0-9]/)) {
+        alert(languageArray.s_createStudentFieldsError);
+        return false;
+    } else if (!firstName || !lastName || !age || !homeTown) {
+        alert(languageArray.s_createStudentError);
+        return false;
+    } else {
+        return true;
     }
 }
 
 module.exports = {
     changeLocation: changeLocation,
-    validateInputLogin: validateInputLogin,
-    validateInputPass: validateInputPass,
+    validateInput: validateInput,
     getErrorMessageByStatusCode: getErrorMessageByStatusCode,
     valLoginReg: valLoginReg,
     valPasswordReg: valPasswordReg,
     valPasswordAgainReg: valPasswordAgainReg,
     valMailReg: valMailReg,
-    valPhoneReg: valPhoneReg
+    valPhoneReg: valPhoneReg,
+    errorAuth: errorAuth,
+    validateCreateInput: validateCreateInput
 };

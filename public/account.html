@@ -9,30 +9,46 @@
 <body>
    
     <div class="wrapper-account">
+        <div class="language">
+            <select class="language_select" id="language-authorization">
+                <option value="RU" class="language_select__item">Русский</option>
+                <option value="EN" class="language_select__item">English</option>
+            </select>
+        </div>
         <div class="app-account">
-            <h1 class="header-account">Change my data</h1>
+            <h1 id = "changeDataForm" class="header-account"></h1>
             <div class="account-inputs">
                 <div class="account-inputs__wrapper">
-                    <label for="login">My Login:</label>
+                    <label id = "loginLabel"for="login"></label>
                     <input type="text" class="account-inputs__input" id="login">
+                    <div class="registration_inputLogin__error registration_input__error"></div>
                 </div>
                 <div class="account-inputs__wrapper">
-                    <label for="pass">My Password:</label>
-                    <input type="text" class="account-inputs__input" id="pass">
+                    <label id = "password1Label" for="pass"></label>
+                    <input type="password" class="account-inputs__input" id="pass">
+                    <div class="registration_inputPassword__error registration_input__error"></div>
+
                 </div>
                 <div class="account-inputs__wrapper">
-                    <label for="email">My Email:</label>
+                    <label  id = "password2Label" for="pass"></label>
+                    <input type="password" class="account-inputs__input" id="pass2">
+                    <div class="registration_inputAgainPassword__error registration_input__error"></div>
+                </div>
+                <div class="account-inputs__wrapper">
+                    <label id = "emailLabel" for="email"></label>
                     <input type="text" class="account-inputs__input" id="email">
+                    <div class="registration_inputMail__error registration_input__error"></div>
                 </div>
                 <div class="account-inputs__wrapper">
-                    <label for="phone">My Phone number:</label>
+                    <label id = "phoneLabel"for="phone"></label>
                     <input type="text" class="account-inputs__input" id="phone">
+                    <div class="registration_inputPhone__error registration_input__error"></div>
                 </div>
             
             </div>
             <div class="account-buttons">
-                <button id="savebtn" class="account-buttons__button">Save</button>
-                <button id="returnbtn" class="account-buttons__button">Back</button>
+                <button id="savebtn" class="account-buttons__button"></button>
+                <button id="returnbtn" class="account-buttons__button"></button>
             </div>
         </div>
         

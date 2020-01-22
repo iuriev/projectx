@@ -1,43 +1,52 @@
 require("./styles/index.less");
-const constants  = require('./static/constants.js');
+const constants = require('./static/constants.js');
 let utils = require('./helpers/utils.js');
-let stateOfFilds;
+let helpers = require('./helpers/helper');
+let state;
 let login;
 let password1;
 let password2;
 let email;
 let phone;
+let count = 0;
 
 window.addEventListener("load", function () {
-    stateOfFilds = false;
+    state = false;
     document.getElementById('registerBtn').addEventListener('click', teacherRegister);
-    document.addEventListener('keyup', function() {
+    document.getElementById('language-authorization').addEventListener('change', helpers.changeSelectedValue);
+    document.addEventListener('keyup', downButton);
+    let e = document.getElementById("language-authorization");
+    localStorage.getItem('language') === "RU" ? e.selectedIndex = 0 : e.selectedIndex = 1;
+    helpers.setRegistrationPageLanguage();
+});
+
+function downButton() {
+    if (count > 0) {
         login = document.getElementById('loginReg').value;
         password1 = document.getElementById('passwordReg1').value;
         password2 = document.getElementById('passwordReg2').value;
         email = document.getElementById('emailReg').value;
         phone = document.getElementById('telReg').value;
-        valFormsReg();
-    });
-});
-
-function valFormsReg() {
-    var errorAll = document.querySelector('.registration_inputAll__error');
-    if (login && password1 && password2 && email && phone) {
-        errorAll.innerHTML = '';
-        var logValRes = utils.valLoginReg(login);
-        var pasValRes = utils.valPasswordReg(password1);
-        var againValRes = utils.valPasswordAgainReg(password1, password2);
-        var mailValRes = utils.valMailReg(email);
-        var phoneValRes = utils.valPhoneReg(phone);
-        stateOfFilds = logValRes && pasValRes && againValRes && mailValRes && phoneValRes;
-    }else{
-        errorAll.innerHTML = constants.instructionErrAllReg;
+        let errorAll = document.querySelector('.registration_inputAll__error');
+        let languageArray = helpers.getCurrentLanguagesSet();
+        if (login && password1 && password2 && email && phone) {
+            errorAll.innerHTML = '';
+            let logValRes = utils.valLoginReg(document.getElementById('loginReg').value);
+            let pasValRes = utils.valPasswordReg(password1);
+            let againValRes = utils.valPasswordAgainReg(password1, password2);
+            let mailValRes = utils.valMailReg(email);
+            let phoneValRes = utils.valPhoneReg(phone);
+            state = logValRes && pasValRes && againValRes && mailValRes && phoneValRes;
+        } else {
+            errorAll.innerHTML = languageArray.b_allFieldsCheck;
+        }
     }
 }
 
-function teacherRegister(){
-    if(stateOfFilds){
+function teacherRegister() {
+    count++;
+    downButton();
+    if (state) {
         let xhr = new XMLHttpRequest();
         let requestBody = {
             login: login,

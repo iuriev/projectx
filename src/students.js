@@ -1,28 +1,42 @@
 require("./styles/index.less");
-var utils = require('./helpers/utils.js');
-var constants = require('./static/constants')
-var xhr;
-window.addEventListener('load', function(){
-    xhr = new XMLHttpRequest();
-    importStudent();
-    document.getElementById('myLoginName').innerHTML = 'You are logged in as ' + localStorage.getItem("UserLogin");
-    document.getElementById('btnCreate').addEventListener('click', createStudent);
+const utils = require('./helpers/utils.js');
+const constants = require('./static/constants')
+const helpers = require('./helpers/helper');
+let xhr = new XMLHttpRequest();
+let fn;
+let ln;
+let age;
+let ht;
+window.addEventListener('load', function () {
+
+    fn = document.getElementById('firstName');
+    ln = document.getElementById('lastName');
+    age = document.getElementById('age');
+    ht = document.getElementById('homeTown');
+    let languageArray = helpers.getCurrentLanguagesSet();
+    document.getElementById('language-authorization').addEventListener('change', helpers.changeSelectedValue);
+    document.getElementById('myLoginName').innerHTML = languageArray.s_teacher_login + localStorage.getItem("UserLogin");
+    document.getElementById('btnCreate').addEventListener('click', function () {
+
+        if (utils.validateCreateInput(fn.value, ln.value, ht.value, age.value)) {
+            createStudent()
+        }
+
+    });
     document.getElementById('fullScreen').addEventListener('click', fullScreen);
     document.getElementById('logout').addEventListener('click', logout);
-    document.getElementById('account').addEventListener('click', function() {
+    document.getElementById('account').addEventListener('click', function () {
         utils.changeLocation(constants.pathAccount);
-    })
+    });
+    let e = document.getElementById("language-authorization");
+    localStorage.getItem('language') === "RU" ?  e.selectedIndex = 0 : e.selectedIndex = 1;
+    helpers.setStudentsPageLanguage();
+    importStudent();
 });
 
-
 function fullScreen() {
-    if (document.fullscreenElement) {
-        document.exitFullscreen();
-    } else {
-        document.documentElement.requestFullscreen();
-    }
+    document.fullscreenElement ? document.exitFullscreen(): document.documentElement.requestFullscreen();
 }
-
 
 function logout() {
     localStorage.clear();
@@ -30,91 +44,90 @@ function logout() {
 }
 
 function drawHeader() {
-    var col = ["First Name", "Last Name", "Age", "Hometown", "Actions"];
-    var table = document.createElement("table");
+    let languageArray = helpers.getCurrentLanguagesSet();
+    let col = [languageArray.s_fn, languageArray.s_ln, languageArray.s_age, languageArray.s_ht, languageArray.s_actions];
+    let table = document.createElement("table");
     table.id = "mainTable";
     table.classList.add('table__dynamic')
-    var tr = table.insertRow(-1);
-    for (var i = 0; i < col.length; i++) {
-        var th = document.createElement("th");
+    let tr = table.insertRow(-1);
+    for (let i = 0; i < col.length; i++) {
+        let th = document.createElement("th");
         th.classList.add('th')
         th.innerHTML = col[i];
         tr.appendChild(th);
     }
-    var divContainer = document.getElementById("showData");
+    let divContainer = document.getElementById("showData");
     divContainer.innerHTML = "";
     divContainer.appendChild(table);
 }
 
 function drawtable(temp) {
     drawHeader();
-    var col = [];
-    for (var i = 0; i < temp.length; i++) {
-        for (var key in temp[i]) {
+    let col = [];
+    for (let i = 0; i < temp.length; i++) {
+        for (let key in temp[i]) {
             if (col.indexOf(key) === -1) {
                 col.push(key);
             }
         }
     }
-    var table = document.getElementById("mainTable");
-    for (var k = 0; k < temp.length; k++) {
-        tr = table.insertRow(-1);
-        for (var j = 1; j < col.length; j++) {
-            var tabCell = tr.insertCell(-1);
+    let table = document.getElementById("mainTable");
+    for (let k = 0; k < temp.length; k++) {
+        let tr = table.insertRow(-1);
+        for (let j = 1; j < col.length; j++) {
+            let tabCell = tr.insertCell(-1);
             tabCell.classList.add('tabCell');
             tabCell.id = col[j] + temp[k][col[0]];
             tabCell.innerHTML = temp[k][col[j]];
         }
-
-        var btnUpdate = document.createElement("button");
+        let languageArray = helpers.getCurrentLanguagesSet();
+        let btnUpdate = document.createElement("button");
         btnUpdate.id = "updateBtn" + temp[k][col[0]];
-        btnUpdate.innerHTML = "Update";
+        btnUpdate.innerHTML = languageArray.button_update;
+        btnUpdate.classList.add('update-btn');
         btnUpdate.addEventListener('click', updatePreparation);
         tr.appendChild(btnUpdate);
 
-        var btnDelete = document.createElement("button");
+        let btnDelete = document.createElement("button");
         btnDelete.id = "deleteBtn" + temp[k][col[0]];
-        btnDelete.innerHTML = "Delete";
+        btnDelete.innerHTML = languageArray.button_delete;
+        btnDelete.classList.add('delete-btn');
         btnDelete.addEventListener('click', deleteStudent);
         tr.appendChild(btnDelete);
     }
 
-    var divContainer = document.getElementById("showData");
+    let divContainer = document.getElementById("showData");
     divContainer.innerHTML = "";
     divContainer.appendChild(table);
 }
 
 function updatePreparation() {
 
-    var id = this.id.substring(9, this.id.length);
-
-    var fn = document.getElementById('fn' + id);
-    var fnText = fn.textContent;
+    let id = this.id.substring(9, this.id.length);
+    let fn = document.getElementById('fn' + id);
+    let fnText = fn.textContent;
     fn.innerHTML = `<input type='text' id = inputFn${id} value = ${fnText} >`;
-
-    var ln = document.getElementById('ln' + id);
-    var lnText = ln.textContent;
+    let ln = document.getElementById('ln' + id);
+    let lnText = ln.textContent;
     ln.innerHTML = `<input type='text'  id = inputLn${id} value= ${lnText} >`;
-
-    var age = document.getElementById('age' + id);
-    var ageText = age.textContent;
+    let age = document.getElementById('age' + id);
+    let ageText = age.textContent;
     age.innerHTML = `<input type='number'  id = inputAge${id} value= ${ageText} >`;
-
-    var ht = document.getElementById('ht' + id);
-    var htText = ht.textContent;
+    let ht = document.getElementById('ht' + id);
+    let htText = ht.textContent;
     ht.innerHTML = `<input type='text' id = inputHt${id}  value= ${htText} >`;
-
-    var parent = this.parentNode;
-
-    var buttonSave = document.createElement('button');
-    buttonSave.innerHTML = 'Save';
+    let parent = this.parentNode;
+    let languageArray = helpers.getCurrentLanguagesSet();
+    let buttonSave = document.createElement('button');
+    buttonSave.innerHTML = languageArray.acc_saveButtonText;
     buttonSave.id = `save${id}`;
+    buttonSave.classList.add('save-btn')
     parent.replaceChild(buttonSave, this);
     buttonSave.after(this);
     buttonSave.addEventListener('click', updateStudent);
-
-    var buttonCancel = document.createElement('button');
-    buttonCancel.innerHTML = 'Cansel';
+    let buttonCancel = document.createElement('button');
+    buttonCancel.innerHTML = languageArray.button_cansel;
+    buttonCancel.classList.add('cancel-btn')
     buttonCancel.id = `cansel${id}`;
     buttonCancel.addEventListener('click', cansel);
     parent.replaceChild(buttonCancel, this);
@@ -127,12 +140,12 @@ function cansel() {
 }
 
 function importStudent() {
-    var id = localStorage.getItem("UserID");
+    let id = localStorage.getItem("UserID");
     xhr.open("GET", `${constants.server}all-students?id=${id}`, true);
     xhr.setRequestHeader("Content-type", "application/json");
-    xhr.onreadystatechange = function () {//Вызывает функцию при смене состояния.
+    xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            var temp = JSON.parse(xhr.responseText);
+            let temp = JSON.parse(xhr.responseText);
             drawtable(temp);
         }
     };
@@ -140,31 +153,23 @@ function importStudent() {
 }
 
 function createStudent() {
-    var fn = document.getElementById('firstName').value;
-    var ln = document.getElementById('lastName').value;
-    var age = document.getElementById('age').value;
-    var ht = document.getElementById('homeTown').value;
-    if (!fn || !ln || !age || !ht) {
-        alert("If you want to add new student please fill all inputs");
-    } else {
-        var userID = localStorage.getItem("UserID");
-        var requestBody = {
-            fn: fn,
-            ln: ln,
-            age: age,
-            ht: ht,
-            teacherId: userID
-        };
-        xhr.open("POST", `${constants.server}create-student`);
-        xhr.setRequestHeader("Content-type", "application/json");
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                importStudent();
-            }
-        };
-        
-        xhr.send(JSON.stringify(requestBody));
-    }
+
+    var userID = localStorage.getItem("UserID");
+    var requestBody = {
+        fn: fn.value,
+        ln: ln.value,
+        age: age.value,
+        ht: ht.value,
+        teacherId: userID
+    };
+    xhr.open("POST", `${constants.server}create-student`);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            importStudent();
+        }
+    };
+    xhr.send(JSON.stringify(requestBody));
 }
 
 function updateStudent() {
@@ -176,15 +181,18 @@ function updateStudent() {
         age: document.getElementById(`inputAge${id}`).value,
         ht: document.getElementById(`inputHt${id}`).value
     };
-    xhr.open("POST", `${constants.server}update-student-info`, true);
-    xhr.setRequestHeader("Content-type", "application/json");
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
+    if (utils.validateCreateInput(requestBody.fn, requestBody.ln, requestBody.ht, requestBody.age)) {
+        xhr.open("POST", `${constants.server}update-student-info`, true);
+        xhr.setRequestHeader("Content-type", "application/json");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
                 importStudent();
-        }
-    };
-    xhr.send(JSON.stringify(requestBody));
+            }
+        };
+        xhr.send(JSON.stringify(requestBody));
+    }
 }
+
 function deleteStudent() {
     var requestBody = {
         id: this.id.substring(9, this.id.length)
