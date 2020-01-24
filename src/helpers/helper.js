@@ -124,6 +124,13 @@ function setAuthorizationPageLanguage() {
     document.getElementById("labelPass").innerHTML = languageArray.a_passwordInputLabel;
     document.getElementById("login").innerText = languageArray.a_loginButtonText;
     document.getElementById("register").innerText = languageArray.a_registrationButton;
+    document.getElementById("caption").innerText = languageArray.a_caption;
+    document.getElementById("boris").innerText = languageArray.a_boris;
+    document.getElementById("andrey").innerText = languageArray.a_andrey;
+    document.getElementById("dmitry").innerText = languageArray.a_dmitry;
+    document.getElementById("ivan").innerText = languageArray.a_ivan;
+    document.getElementById("copyright").innerText = languageArray.a_copyright;
+
     if(document.querySelector('.input-section__error-password').innerHTML !== ""){
         document.querySelector('.input-section__error-password').innerHTML = languageArray.a_loginErrorMessage;
     }

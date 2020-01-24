@@ -7,11 +7,16 @@
 </head>
 <body>
 <div class="wrapper">
-    <div class="language">
-        <select class="language_select" id="language-authorization">
-            <option value="RU" class="language_select__item">Русский</option>
-            <option value="EN" class="language_select__item">English</option>
-        </select>
+    <div class="header">
+        <div class="header__title">
+            <h1 class="caption" id="caption"></h1>
+        </div>
+        <div class="language">
+            <select class="language_select" id="language-authorization">
+                <option value="RU" class="language_select__item">Русский</option>
+                <option value="EN" class="language_select__item">English</option>
+            </select>
+        </div>
     </div>
     <div class="authorization-block">
         <div class="authorization-block__input-section input-section">
@@ -28,6 +33,28 @@
             <button class="button-section__btn-registration btn-all" id="register"></button>
         </div>
         <div id="regText"></div>
+        <div id="prompt-form-container">
+            <input name="text" type="text"> 
+            <input type="button" name="cancel" value="Отмена">
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer__devs">
+            <p>Devs:</p>
+            <div class="team">
+                <p id="boris"></p>
+                <p id="andrey"></p>
+            </div>
+            <div class="team">
+                <p id="dmitry"></p>
+                <p id="ivan">Юрьев Иван</p>
+            </div>
+        </div>
+       
+        <div class="footer__copyright">
+            <p>DreamTeam 2019-2020</p>
+            <p id="copyright">Все права защищены</p>
+        </div>
     </div>
 </div>
 </body>
