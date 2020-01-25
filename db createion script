@@ -1,15 +1,4 @@
 
-* install postgreSQL install https://www.postgresql.org/ 
-* your login and password must be admin
-* install node.js https://nodejs.org/
-* install Moesif Orign & CORS Changer extension for chrome. If you dont have chrome browser, please install it!
-* install git https://git-scm.com/
---- 
-
-* Open pgAdmin and:
-* create BD 'students' database
-* create table 'teacher' using scripts
-
 CREATE TABLE teacher(
 id serial PRIMARY KEY,
 login character varying(20) NOT NULL UNIQUE,
@@ -52,16 +41,3 @@ id_group INTEGER NOT NUll
 ALTER TABLE account
 ADD CONSTRAINT FK_group
 FOREIGN KEY (id_group) REFERENCES course_group(id);
-
----
-
-* clone repository git clone https://fesmofet@bitbucket.org/fesmofet/projectx.git
-* enter to projectX folder
-* run npm i
-* run node server
-* open index.html in Chrome
-* Done!
----
-You can also change path to your database and table in server.js.js connectionString variable
-
-
