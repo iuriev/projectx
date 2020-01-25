@@ -9,8 +9,6 @@
 .wrapper_students{
   display: flex;
   flex-direction: row;
-  // justify-content: center;
-  // align-items: center;
   width: 100%;
   
 
@@ -145,4 +143,70 @@
 .save-btn, .cancel-btn {
   width: 25%;
   cursor: pointer;
+}
+.tabs {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tabs {
+  border: 1px solid lightgray;
+}
+
+.tabs__nav {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  background: #f8f8f8;
+  margin: 0;
+  border-bottom: 1px solid lightgray;
+}
+
+.tabs__link {
+  padding: 0.5rem 0.75rem;
+  text-decoration: none;
+  color: black;
+  text-align: center;
+  flex-shrink: 0;
+  position: relative;
+  width: 150px;
+  align-items: center;
+  justify-items: center;
+}
+
+.tabs__link_active {
+  background: lightgray;
+  cursor: default;
+}
+
+.tabs__link:not(.tabs__link_active):hover,
+.tabs__link:not(.tabs__link_active):focus {
+  background-color: #efefef;
+}
+
+.tabs__content {
+  padding: 1rem;
+}
+.add-new-tab{
+  font-size: 25px;
+  width: 46px;
+  border-radius: 30px;
+  background-color: #D8E6F3;
+}
+
+.tabs__pane {
+  display: none;
+}
+
+.tabs__pane_show {
+  display: block;
+}
+
+.deleteTabButton{
+  background-image: url("../../assets/img/close.png");
+  background-size: 15px 15px;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 0;  top: 0;
 }
