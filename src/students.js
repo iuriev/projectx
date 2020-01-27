@@ -32,8 +32,9 @@ window.addEventListener('load', function () {
 
     changeStudentsPageLanguage();
     createContainers();
-    drawtable();
     addTabsOnStudentsPage();
+    drawtable();
+
 });
 
 function changeStudentsPageLanguage() {
@@ -87,7 +88,11 @@ function changeTabName() {
         deleteButton.addEventListener('click', deleteTab, false);
 
         parent.replaceChild(oldTab, this);
-        oldTab.append(deleteButton);
+        if(Number(tabIndex) === 1){
+        }
+        else{
+            oldTab.append(deleteButton);
+        }
         let arr = JSON.parse(localStorage.getItem("teacherGroups"));
         let arrNames = JSON.parse(localStorage.getItem("teacherGroupsNames"));
         arrNames[tabIndex - 1] = newText;
@@ -97,7 +102,7 @@ function changeTabName() {
             name: newText
         };
 
-        xhr.open("POST", `${constants.server}save-group-name`, false);
+        xhr.open("POST", `${constants.server}save-group-name`, true);
         xhr.setRequestHeader("Content-type", "application/json");
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
@@ -112,10 +117,10 @@ function changeTabName() {
 
 function deleteTab() {
 
-    var arr = JSON.parse(localStorage.getItem("teacherGroups"));
-    var tab_id = this.id.slice(-1);
-    var id = arr[tab_id - 1];
-    var requestBody = {
+    let arr = JSON.parse(localStorage.getItem("teacherGroups"));
+    let tab_id = this.id.slice(-1);
+    let id = arr[tab_id - 1];
+    let requestBody = {
         id: id
     };
     xhr.open("POST", `${constants.server}delete-group`, false);
@@ -131,7 +136,7 @@ function deleteTab() {
 
 function createNewGroup() {
 
-    var requestBody = {
+    let requestBody = {
         id: localStorage.getItem("UserID")
     };
     xhr.open("POST", `${constants.server}create-new-group`, false);
@@ -208,7 +213,7 @@ function createContainers() {
         panel.id = "content-" + a;
         panel.classList.add("tabs__pane");
         let curr = localStorage.getItem("activeTab");
-        if (curr == a) {
+        if (Number(curr) === a) {
             newTab.classList = "tabs__link tabs__link_active";
             panel.classList.add("tabs__pane_show");
         }
@@ -252,10 +257,10 @@ function drawHeader(a) {
 }
 
 function drawtable() {
-    var arr = JSON.parse(localStorage.getItem("teacherGroups"));
-    for (var a = 1; a < arr.length + 1; a++) {
+    let arr = JSON.parse(localStorage.getItem("teacherGroups"));
+    for (let a = 1; a < arr.length + 1; a++) {
         importStudent(arr[a - 1]);
-        var temp = JSON.parse(localStorage.getItem("tabledata" + arr[a - 1]));
+        let temp = JSON.parse(localStorage.getItem("tabledata" + arr[a - 1]));
         drawHeader(a);
         let col = [];
         for (let i = 0; i < temp.length; i++) {
@@ -340,8 +345,8 @@ function getTeacherGroups() {
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            var arrNumbers = [];
-            var arrNames = [];
+            let arrNumbers = [];
+            let arrNames = [];
             let temp = JSON.parse(xhr.responseText);
             for (let i = 0; i < temp.length; i++) {
                 arrNumbers.push(temp[i].id_group)
@@ -359,7 +364,7 @@ function importStudent(id_group) {
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            var temp = JSON.parse(xhr.responseText);
+            let temp = JSON.parse(xhr.responseText);
             localStorage.setItem("tabledata" + id_group, JSON.stringify(temp));
         }
     };
@@ -368,11 +373,11 @@ function importStudent(id_group) {
 }
 
 function createStudent() {
-    var tab = document.getElementsByClassName('tabs__link_active');
-    var tab_id = tab[0].href.slice(-1);
-    var arr = JSON.parse(localStorage.getItem("teacherGroups"));
+    let tab = document.getElementsByClassName('tabs__link_active');
+    let tab_id = tab[0].href.slice(-1);
+    let arr = JSON.parse(localStorage.getItem("teacherGroups"));
     let id_group = arr[tab_id - 1];
-    var requestBody = {
+    let requestBody = {
         fn: fn.value,
         ln: ln.value,
         age: age.value,
@@ -390,8 +395,8 @@ function createStudent() {
 }
 
 function updateStudent() {
-    var id = this.id.substring(4, this.id.length);
-    var requestBody = {
+    let id = this.id.substring(4, this.id.length);
+    let requestBody = {
         id: id,
         fn: document.getElementById(`inputFn${id}`).value,
         ln: document.getElementById(`inputLn${id}`).value,
@@ -411,7 +416,7 @@ function updateStudent() {
 }
 
 function deleteStudent() {
-    var requestBody = {
+    let requestBody = {
         id: this.id.substring(9, this.id.length)
     };
     xhr.open("POST", `${constants.server}delete-student`, false);
