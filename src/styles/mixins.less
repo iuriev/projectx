@@ -95,11 +95,30 @@
   display: flex;
   justify-content: flex-end;
   background-color: @PDark;
+
+  &_students{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    & .language_name{
+      padding-top: 5px;
+    }
+  }
   &__title{
     align-self: center;
+  }
+  &__item-wrapper{
+    display: flex;
+    justify-content: space-between;
   }
 }
 .caption {
   font-size: large;
   color: @BackgroundMain;
+}
+
+.userImg{
+  //width: 50px;
+  height: 50px;
 }

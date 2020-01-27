@@ -67,6 +67,7 @@ function teacherRegister() {
             email: email.value,
             phone: phone.value,
             keyword: keyword.value,
+            avatar: constants.pathAvatar
         };
         xhr.open("POST", `${constants.server}create-teacher`);
         xhr.setRequestHeader("Content-type", "application/json");

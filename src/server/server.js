@@ -20,7 +20,7 @@ server.listen(3001, function () {
 
 server.post('/authorize-teacher', function (req, res) {
 
-    var sql = `SELECT id,login FROM teacher WHERE login = $1 AND password = $2 ORDER BY id ASC; `;
+    var sql = `SELECT id,login,picture_url FROM teacher WHERE login = $1 AND password = $2 ORDER BY id ASC; `;
     client.query(sql, [req.body.login, req.body.password], (error, response) => {
         if (error) {
             res.status(500).send("SERVER ERROR");
@@ -37,8 +37,9 @@ server.post('/authorize-teacher', function (req, res) {
 server.post('/create-teacher', function (req, res) {
     var newGroupId = 0;
     var newTeacherId = 0;
-    var sql1 = `INSERT INTO teacher (login,password,email,phone,keyword) VALUES ($1, $2, $3, $4, $5) RETURNING id;`;
-    client.query(sql1, [req.body.login, req.body.password, req.body.email, req.body.phone, req.body.keyword], (err, response) => {
+    console.log(req.body)
+    var sql1 = `INSERT INTO teacher (login,password,email,phone,keyword,picture_url) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;`;
+    client.query(sql1, [req.body.login, req.body.password, req.body.email, req.body.phone, req.body.keyword, req.body.avatar], (err, response) => {
         if (err) {
             res.status(502).send("SERVER ERROR");
         } else {
@@ -97,6 +98,17 @@ server.get('/teacher', function (req, res) {
         }
     });
 });
+
+// server.get('/avatar', function(req, res){
+//     var sql = `SELECT picture_url FROM teacher WHERE id = $1 ORDER BY id ASC;`;
+//     client.query(sql, [req.query.id], (err, response) => {
+//         if (err) {
+//             res.status(500).send("SERVER ERROR");
+//         } else {
+//             res.status(200).json(response.rows);
+//         }
+//     });
+// });
 
 server.post('/update-teacher', function (req, res) {
     var sql = `UPDATE teacher SET (login,password,email,phone,keyword,about) = ($2, $3, $4, $5, $6, $7) WHERE id = $1;`;
