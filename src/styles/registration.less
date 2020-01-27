@@ -1,13 +1,18 @@
 @import 'mixins.less';
 
 .wrapper_reg{
-  .wrapper;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   background-color: @registrationRegistration;
 
   .registration{
     .wrapper-contentBlock(25%; 55%; 350px);
     background-color: @registrationWindowReg;
     border-radius: 2px;
+    padding-bottom: 20px;
 
     & .title_Reg {
       .titleReg_Log(15px; 25px);
@@ -52,5 +57,13 @@
       }
     }
 
+    &_return {
+      text-align: center;
+
+      &_auth{
+        color: blue;
+        text-decoration: none;
+      }
+    }
   }
 }

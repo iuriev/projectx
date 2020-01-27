@@ -37,8 +37,8 @@ server.post('/authorize-teacher', function (req, res) {
 server.post('/create-teacher', function (req, res) {
     var newGroupId = 0;
     var newTeacherId = 0;
-    var sql1 = `INSERT INTO teacher (login,password,email,phone) VALUES ($1, $2, $3, $4) RETURNING id;`;
-    client.query(sql1, [req.body.login, req.body.password, req.body.email, req.body.phone], (err, response) => {
+    var sql1 = `INSERT INTO teacher (login,password,email,phone,keyword) VALUES ($1, $2, $3, $4, $5) RETURNING id;`;
+    client.query(sql1, [req.body.login, req.body.password, req.body.email, req.body.phone, req.body.keyword], (err, response) => {
         if (err) {
             res.status(502).send("SERVER ERROR");
         } else {
