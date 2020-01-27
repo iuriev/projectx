@@ -92,6 +92,7 @@ function setAccountPageLanguage() {
     document.getElementById("ivan").innerText = languageArray.a_ivan;
     document.getElementById("copyright").innerText = languageArray.a_copyright;
     document.getElementById("textearea-label").innerText = languageArray.acc_texteareaLabel;
+    document.getElementById("keywordLabel").innerText = languageArray.acc_keyword;
 }
 
 function setRegistrationPageLanguage() {

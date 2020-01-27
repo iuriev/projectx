@@ -9,6 +9,8 @@ let password2;
 let email;
 let phone;
 let id;
+let keyword;
+let about;
 
 window.addEventListener('load', function () {
 
@@ -19,6 +21,8 @@ window.addEventListener('load', function () {
     password2 = document.querySelector('#pass2');
     email = document.querySelector('#email');
     phone = document.querySelector('#phone');
+    keyword = document.querySelector('#keyword');
+    about = document.querySelector('#aboutMe');
 
     let e = document.getElementById("language-authorization");
     if (localStorage.getItem('language') === "RU") {
@@ -33,7 +37,7 @@ window.addEventListener('load', function () {
         utils.changeLocation(constants.pathStudentsPage);
     });
     document.querySelector('#savebtn').addEventListener('click', function () {
-        if (!utils.valLoginReg(login.value) || !utils.valMailReg(email.value) || !utils.valPhoneReg(phone.value) || !utils.valPasswordReg(password.value) || !utils.valPasswordAgainReg(password.value, password2.value)) {
+        if (!utils.valLoginReg(login.value) || !utils.valMailReg(email.value) || !utils.valPasswordReg(password.value) || !utils.valPasswordAgainReg(password.value, password2.value)) {
             document.addEventListener('keyup', function () {
                 utils.valLoginReg(login.value);
                 utils.valMailReg(email.value);
@@ -61,6 +65,8 @@ function importInputs() {
             password2.value = temp[0]['password'];
             email.value = temp[0]['email'];
             phone.value = temp[0]['phone'];
+            keyword.value = temp[0]['keyword'];
+            about.value = temp[0]['about'];
         }
     };
     xhr.send();
@@ -74,6 +80,8 @@ function updateInfo() {
         password: password.value,
         email: email.value,
         phone: phone.value,
+        keyword: keyword.value,
+        about: about.value
     };
     xhr.open("POST", `${constants.server}update-teacher`);
     xhr.setRequestHeader("Content-type", "application/json");

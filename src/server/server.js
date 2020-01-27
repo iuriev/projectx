@@ -88,7 +88,7 @@ server.get('/all-students', function (req, res) {
 });
 
 server.get('/teacher', function (req, res) {
-    var sql = `SELECT login,password,email,phone FROM teacher WHERE id = $1 ORDER BY id ASC;`;
+    var sql = `SELECT login,password,email,phone,keyword,about FROM teacher WHERE id = $1 ORDER BY id ASC;`;
     client.query(sql, [req.query.id], (err, response) => {
         if (err) {
             res.status(500).send("SERVER ERROR");
@@ -99,8 +99,8 @@ server.get('/teacher', function (req, res) {
 });
 
 server.post('/update-teacher', function (req, res) {
-    var sql = `UPDATE teacher SET (login,password,email,phone) = ($2, $3, $4, $5) WHERE id = $1;`;
-    client.query(sql, [req.body.id, req.body.login, req.body.password, req.body.email, req.body.phone], (err, response) => {
+    var sql = `UPDATE teacher SET (login,password,email,phone,keyword,about) = ($2, $3, $4, $5, $6, $7) WHERE id = $1;`;
+    client.query(sql, [req.body.id, req.body.login, req.body.password, req.body.email, req.body.phone, req.body.keyword, req.body.about], (err, response) => {
         if (err) {
             res.status(502).send("SERVER ERROR");
         } else {
