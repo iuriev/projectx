@@ -160,7 +160,7 @@ var modal = document.getElementById('myModal');
 var btn = document.getElementById("myBtn");
 var span = document.getElementsByClassName("close")[0];
 var inf_login=document.getElementById("inf_login");
-// var inf_keyword=document.getElementById("inf_keyword");
+var inf_keyword=document.getElementById("inf_keyword");
 btn.onclick = function() {
 modal.style.display = "block";
 }
@@ -176,9 +176,8 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
-
 function vuvod(){
-    document.getElementById('answer').value = inf_login.value;
+    document.getElementById('answer').value = inf_login.value+inf_keyword.value;
 }
 
     
