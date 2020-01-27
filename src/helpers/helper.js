@@ -101,8 +101,15 @@ function setRegistrationPageLanguage() {
     document.getElementById("passwordReg1").placeholder = languageArray.b_password1Placeholder;
     document.getElementById("passwordReg2").placeholder = languageArray.b_password2Placeholder;
     document.getElementById("emailReg").placeholder = languageArray.b_emailPlaceholder;
+    document.getElementById("keyReg").placeholder = languageArray.b_keyPlaceholder;
     document.getElementById("telReg").placeholder = languageArray.b_phonePlaceholder;
     document.getElementById("registerBtn").innerText = languageArray.b_registrationButtonText;
+    document.getElementById("backReg").innerText = languageArray.b_registrationBackText;
+    document.getElementById("boris").innerText = languageArray.a_boris;
+    document.getElementById("andrey").innerText = languageArray.a_andrey;
+    document.getElementById("dmitry").innerText = languageArray.a_dmitry;
+    document.getElementById("ivan").innerText = languageArray.a_ivan;
+    document.getElementById("copyright").innerText = languageArray.a_copyright;
     if(document.querySelector('.registration_inputLogin__error').innerHTML !== ""){
         document.querySelector('.registration_inputLogin__error').innerHTML = languageArray.b_loginError;
     }

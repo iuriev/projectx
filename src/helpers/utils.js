@@ -54,7 +54,7 @@ function valPasswordAgainReg(password1, password2) {
 
 function valMailReg(email) {
     let languageArray = helpers.getCurrentLanguagesSet();
-    if (email.includes("@")) {
+    if (email.match(/\S+@\S+\.\S+/)) {
         document.querySelector('.registration_inputMail__error').innerHTML = "";
         return true;
     } else {
@@ -65,10 +65,10 @@ function valMailReg(email) {
 
 function valPhoneReg(phone) {
     let languageArray = helpers.getCurrentLanguagesSet();
-    if (phone.slice(0, 3) === "+38" && phone.length === 13) {
+    if(phone.slice(0, 3) === "+38" && phone.length === 13){
         document.querySelector('.registration_inputPhone__error').innerHTML = "";
         return true;
-    } else {
+    }else {
         document.querySelector('.registration_inputPhone__error').innerHTML = languageArray.b_phoneError;
         return false;
     }
