@@ -5,6 +5,7 @@ const helpers = require('./helpers/helper');
 let inputLogin;
 let inputPass;
 let xhr;
+let idOfUser;
 
 window.addEventListener("load", function () {
     initializedApp();
@@ -137,7 +138,8 @@ function processAuthorization() {
     validateForm();
     let requestBody = {
         login: inputLogin.value,
-        password: inputPass.value
+        password: inputPass.value,
+        picture_url: ''
     };
 
     xhr.open("POST", `${constants.server}authorize-teacher`);
@@ -151,6 +153,7 @@ function processAuthorization() {
                 let responseArray = JSON.parse(xhr.responseText);
                 localStorage.setItem("UserID", responseArray[0].id);
                 localStorage.setItem("UserLogin", responseArray[0].login);
+                localStorage.setItem("UserAvatar", responseArray[0].picture_url);
                 utils.changeLocation(constants.pathStudentsPage);
             }
         }

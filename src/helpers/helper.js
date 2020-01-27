@@ -73,6 +73,11 @@ function setStudentsPageLanguage() {
     document.getElementById("labelAge").innerText = languageArray.s_age;
     document.getElementById("labelCity").innerText = languageArray.s_ht;
     document.getElementById("btnCreate").innerText = languageArray.s_createButton;
+    document.getElementById("boris").innerText = languageArray.a_boris;
+    document.getElementById("andrey").innerText = languageArray.a_andrey;
+    document.getElementById("dmitry").innerText = languageArray.a_dmitry;
+    document.getElementById("ivan").innerText = languageArray.a_ivan;
+    document.getElementById("copyright").innerText = languageArray.a_copyright;
 
 }
 function setAccountPageLanguage() {

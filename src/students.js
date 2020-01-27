@@ -1,6 +1,6 @@
 require("./styles/index.less");
 const utils = require('./helpers/utils.js');
-const constants = require('./static/constants')
+const constants = require('./static/constants');
 const helpers = require('./helpers/helper');
 let xhr = new XMLHttpRequest();
 let fn;
@@ -34,8 +34,21 @@ window.addEventListener('load', function () {
     createContainers();
     addTabsOnStudentsPage();
     drawtable();
-
+    addAvatar();
 });
+
+function addAvatar(){
+    let blockImg = document.getElementById('account');
+    let imgFromServer = localStorage.getItem('UserAvatar');
+    let img = document.createElement("img");
+    if(localStorage.getItem('UserAvatar') !== "null"){
+        img.setAttribute('src', imgFromServer);
+    }else{
+        img.setAttribute('src', '../assets/img/avatar2.png');
+    }
+    blockImg.appendChild(img);
+    img.classList.add("userImg");
+}
 
 function changeStudentsPageLanguage() {
     let e = document.getElementById("language-authorization");
@@ -338,7 +351,7 @@ function cansel() {
     document.location.reload();
 }
 
-function getTeacherGroups() {
+function getTeacherGroups(){
     localStorage.setItem("activeTab", 1);
     let id = localStorage.getItem("UserID");
     xhr.open("GET", `${constants.server}teacher-groups?id_teacher=${id}`, false);
