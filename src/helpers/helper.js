@@ -85,6 +85,13 @@ function setAccountPageLanguage() {
     document.getElementById("phoneLabel").innerText = languageArray.b_phonePlaceholder;
     document.getElementById("savebtn").innerText = languageArray.acc_saveButtonText;
     document.getElementById("returnbtn").innerText = languageArray.acc_returnButtonText;
+    document.getElementById("caption").innerText = languageArray.acc_caption;
+    document.getElementById("boris").innerText = languageArray.a_boris;
+    document.getElementById("andrey").innerText = languageArray.a_andrey;
+    document.getElementById("dmitry").innerText = languageArray.a_dmitry;
+    document.getElementById("ivan").innerText = languageArray.a_ivan;
+    document.getElementById("copyright").innerText = languageArray.a_copyright;
+    document.getElementById("textearea-label").innerText = languageArray.acc_texteareaLabel;
 }
 
 function setRegistrationPageLanguage() {
