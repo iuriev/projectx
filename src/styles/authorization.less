@@ -86,7 +86,7 @@
     background: @PLight;
   }
 }
-#prompt-form-container {
+.prompt-form-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -95,4 +95,72 @@
   width: 100%;
   height: 100%;
   text-align: center;
+}
+.myBtn {
+  color: rgb(23, 2, 26);
+  cursor: pointer;
+  border: none;
+  text-decoration: underline;
+  margin: 9px;
+}
+.myBtn:hover{
+  color: @PDark;
+}
+.Seach_Key_Word {
+    margin: 1%;;
+    color: rgb(23, 2, 26);
+  }
+.modal {
+    text-align: center;
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+.modal-content {
+    background-color: rgb(255, 255, 255);
+    margin: auto;
+    padding: 0;
+    width: 30%;
+}
+.close {
+    color: rgb(0, 0, 0);
+    float: right;
+    font-size: 28px;
+}
+.close:hover,
+.close:focus {
+    cursor: pointer;
+}
+.modal-header {
+    padding: 2px 8px;
+    color: rgb(0, 0, 0);
+}
+.modal-body {
+    padding: 2px 16px;
+    margin: 0,auto;
+}
+.modal_body_login, .modal_body_Key_word {
+margin: 3px auto;
+width: 200px; 
+text-decoration: none;
+padding: 4px;
+}
+.modal_body_login p, .modal_body_Key_word p{
+     text-align: center; 
+     padding: 2px;
+}
+.password_of_key_login {
+  text-decoration: none;
+  border: none;
+  background-color: none;
+text-align: center;
+padding: 4px;
 }

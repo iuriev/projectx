@@ -33,9 +33,34 @@
             <button class="button-section__btn-registration btn-all" id="register"></button>
         </div>
         <div id="regText"></div>
-        <div id="prompt-form-container">
+        <div class="prompt-form-container">
             <input name="text" type="text"> 
             <input type="button" name="cancel" value="Отмена">
+        </div>
+        <div id="forgot_password">
+            <p class="myBtn" id="myBtn">Forgot Password?</p>
+        </div>
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+              <div class="modal-header">
+                <span class="close">&times;</span>
+                <p>Password recovery</p>
+              </div>
+              <div class="modal-body">
+                <div class="modal_body_login">
+                    <p>login:</p>
+                    <label><input id="inf_login" type="text"></label>
+                </div>
+                <div class="modal_body_Key_word">
+                    <p>Key_word:</p>
+                    <label><input id="inf_keyword" type="text"></label>
+                </div>
+                <div class="button_key_word">
+                    <button class="Seach_Key_Word" id="Seach_Key_Word">Seach Key Word</button>
+                </div>
+                </div>
+                    <label for="password_of_key_login">Your password: <input class="password_of_key_login" id="answer" type="text"></label>
+                </div>
         </div>
     </div>
     <div class="footer">
@@ -57,5 +82,6 @@
         </div>
     </div>
 </div>
+
 </body>
 </html>

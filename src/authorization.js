@@ -167,3 +167,32 @@ function processAuthorization() {
 function validateForm() {
     utils.validateInput(inputPass.value, inputLogin.value);
 }
+//_______________________________modal_window_Forgot_Password?
+var modal = document.getElementById('myModal');
+var btn = document.getElementById("myBtn");
+var span = document.getElementsByClassName("close")[0];
+var inf_login=document.getElementById("inf_login");
+var inf_keyword=document.getElementById("inf_keyword");
+btn.onclick = function() {
+modal.style.display = "block";
+}
+var result=document.getElementById("Seach_Key_Word") 
+result.onclick = function(){
+    vuvod();
+} 
+span.onclick = function() {
+    modal.style.display = "none";
+}
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+function vuvod(){
+    document.getElementById('answer').value = inf_login.value+inf_keyword.value;
+}
+
+    
+     
+     
+     
