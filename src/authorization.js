@@ -8,15 +8,16 @@ let xhr;
 
 window.addEventListener("load", function () {
     initializedApp();
+    xhr = new XMLHttpRequest();
+    inputLogin = document.getElementById('inputLogin');
+    inputPass = document.getElementById('inputPass');
     document.getElementById('login').addEventListener('click', processAuthorization);
+    document.getElementById('language-authorization').addEventListener('change', helpers.changeSelectedValue);
+    document.getElementById('Seach_Key_Word').addEventListener('click', rememberPassword);
     document.getElementById('register').addEventListener('click', function () {
         utils.changeLocation(constants.pathRegistrationPage);
     });
-    document.getElementById('language-authorization').addEventListener('change', helpers.changeSelectedValue);
-    document.getElementById('Seach_Key_Word').addEventListener('click', rememberPassword);
-    inputLogin = document.getElementById('inputLogin');
-    inputPass = document.getElementById('inputPass');
-    xhr = new XMLHttpRequest();
+
 });
 
 function initializedApp() {
@@ -24,6 +25,8 @@ function initializedApp() {
         [
             {
                 "a_loginInputLabel": "Введите ваш логин",
+                "a_no_password": "Пароль не найден",
+                "a_no_login_or_pass": "Для восстановления пароля введите ваш логин и ключевое слово",
                 "a_passwordInputLabel": "Введите ваш пароль",
                 "a_loginButtonText": "Войти",
                 "a_registrationButton": "Регистрация",
@@ -37,9 +40,9 @@ function initializedApp() {
                 "a_copyright": "Все права защищены",
                 "a_forgotPassword": "Забыли пароль?",
                 "a_modalPassword": "Восстановление пароля",
-                "a_modalLogin": "Логин:",
+                "a_modalLogin": "Логин: ",
                 "a_modalKeyword": "Ключевое слово: ",
-                "a_seach_Key_Word": "Поиск ключевого слова",
+                "a_seach_Key_Word": "Восстановить пароль",
                 "a_givePasswordModal": "Ваш пароль: ",
                 "b_loginError": "Логин должен быть не меньше 5 символов и начинаться с числа",
                 "b_passwordError": "Длина пароля минимум 5 символов",
@@ -59,6 +62,7 @@ function initializedApp() {
                 "b_allFieldsCheck": "Все поля должны быть заполнены",
                 "b_dbError":"Ошибка соединения с БД",
                 "b_errorLoginExist": "Пользователь с таким логином уже существует",
+                "acc_buttonImageSend": "Загрузить",
                 "acc_changeDataForm" : "Изменение данных профиля",
                 "acc_saveButtonText" : "Сохранить",
                 "acc_returnButtonText" : "Назад",
@@ -71,6 +75,7 @@ function initializedApp() {
                 "s_age": "Возраст",
                 "s_ht": "Город",
                 "s_actions": "Действия",
+                "s_language_text_label": "Язык",
                 "button_delete": "Удалить",
                 "button_update": "Изменить",
                 "button_cansel": "Отменить",
@@ -81,6 +86,8 @@ function initializedApp() {
             },
             {
                 "a_loginInputLabel": "Enter login",
+                "a_no_password": "Password not found",
+                "a_no_login_or_pass": "Please write you login and keyword",
                 "a_passwordInputLabel": "Enter password",
                 "a_loginButtonText": "Login",
                 "a_registrationButton": "Registration",
@@ -92,11 +99,11 @@ function initializedApp() {
                 "a_dmitry": "Medvedev Dmitry",
                 "a_ivan": "Iuriev Ivan",
                 "a_copyright": "All rights reserved",
-                "a_forgotPassword": "Forgot Password?",
+                "a_forgotPassword": "Forgot password?",
                 "a_modalPassword": "Password recovery",
                 "a_modalLogin": "Login:",
-                "a_modalKeyword": "Key_word:",
-                "a_seach_Key_Word": "Search Key Word",
+                "a_modalKeyword": "Keyword:",
+                "a_seach_Key_Word": "Search password",
                 "a_givePasswordModal": "Your password: ",
                 "b_loginError": "Enter more than five char and begin with a letter",
                 "b_passwordError": "Password must be longer than 5 characters",
@@ -116,6 +123,7 @@ function initializedApp() {
                 "b_allFieldsCheck": "Fill in all the fields",
                 "b_dbError":"DB Error",
                 "b_errorLoginExist":"This login already in use",
+                "acc_buttonImageSend": "Upload",
                 "acc_changeDataForm" : "Change profile data",
                 "acc_saveButtonText" : "Save",
                 "acc_returnButtonText" : "Back",
@@ -128,6 +136,7 @@ function initializedApp() {
                 "s_age": "Age",
                 "s_ht": "City",
                 "s_actions": "Actions",
+                "s_language_text_label": "Language",
                 "button_delete": "Delete",
                 "button_update": "Update",
                 "button_cansel": "Cansel",
@@ -152,22 +161,6 @@ function initializedApp() {
     helpers.setAuthorizationPageLanguage();
 }
 
-function rememberPassword(){
-    let answer = document.getElementById("answer");
-    let loginInput = document.getElementById("inf_login").value;
-    let keywordModal = document.getElementById("inf_keyword").value;
-    xhr.open("GET", `${constants.server}password-forgot?keyword=${keywordModal}`, false);
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            let temp = JSON.parse(xhr.responseText);
-            if(loginInput === temp[0].login){
-                console.log(temp[0].password);
-                answer.innerHTML = temp[0].password;
-            }
-        }
-    };
-    xhr.send();
-}
 
 function processAuthorization() {
     validateForm();
@@ -176,7 +169,6 @@ function processAuthorization() {
         password: inputPass.value,
         picture_url: ''
     };
-
     xhr.open("POST", `${constants.server}authorize-teacher`);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = function () {
@@ -188,7 +180,6 @@ function processAuthorization() {
                 let responseArray = JSON.parse(xhr.responseText);
                 localStorage.setItem("UserID", responseArray[0].id);
                 localStorage.setItem("UserLogin", responseArray[0].login);
-                
                 localStorage.setItem("UserAvatar", "../src/server/uploads/"+responseArray[0].picture_url);
                 utils.changeLocation(constants.pathStudentsPage);
             }
@@ -201,30 +192,51 @@ function validateForm() {
     utils.validateInput(inputPass.value, inputLogin.value);
 }
 
-//_______________________________modal_window_Forgot_Password?
-var modal = document.getElementById('myModal');
-var btn = document.getElementById("myBtn");
-var span = document.getElementsByClassName("close")[0];
-var inf_login=document.getElementById("inf_login");
-var inf_keyword=document.getElementById("inf_keyword");
+function rememberPassword() {
+
+    let languageArray = helpers.getCurrentLanguagesSet();
+
+    if(document.getElementById("inf_login").value === "" || document.getElementById("inf_keyword").value === "")
+    {
+        alert(languageArray.a_no_login_or_pass);
+    }
+    else{
+        let answer = document.getElementById("answer");
+        let requestBody = {
+            login: document.getElementById("inf_login").value,
+            keyword: document.getElementById("inf_keyword").value
+        };
+        xhr.open("POST", `${constants.server}password-forgot`);
+        xhr.setRequestHeader("Content-type", "application/json");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                let temp = JSON.parse(xhr.responseText);
+                if (temp.length > 0) {
+                    answer.innerText = temp[0].password;
+                } else {
+                    answer.innerText = languageArray.a_no_password;
+                }
+            }
+        };
+        xhr.send(JSON.stringify(requestBody));
+    }
+}
+
+let modal = document.getElementById('myModal');
+let btn = document.getElementById("myBtn");
+let span = document.getElementsByClassName("close")[0];
+
 btn.onclick = function() {
 modal.style.display = "block";
 };
-// var result=document.getElementById("Seach_Key_Word")
-// result.onclick = function(){
-//     vuvod();
-// } ;
+
 span.onclick = function() {
     modal.style.display = "none";
+    document.getElementById("inf_login").value = "";
+    document.getElementById("inf_keyword").value = "";
+    document.getElementById("answer").value = "";
 };
-window.onclick = function(event) {
-    if (event.target === modal) {
-        modal.style.display = "none";
-    }
-};
-// function vuvod(){
-//     document.getElementById('answer').value = inf_login.value+inf_keyword.value;
-// }
+
 
     
      

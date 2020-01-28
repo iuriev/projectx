@@ -27,7 +27,6 @@
     position: sticky;
     background-color: @mainColor;
     width: 100%;
-    border-radius: 15px;
 
     & .menu__header{
       display: flex;
@@ -114,17 +113,13 @@
       border-spacing: 0;
 
       & .th{
-        background: #AFCDE7;
+        background: cornflowerblue;
         color: white;
         padding: 10px 20px;
         border: 2px solid white;
 
-        &:first-child {
-          border-top-left-radius: 15px;
-        }
 
         &:last-child {
-          border-top-right-radius: 15px;
           border-right: none;
         }
       }
@@ -172,6 +167,7 @@
 .tabs__link {
   padding: 0.5rem 0.75rem;
   text-decoration: none;
+  background: lemonchiffon;
   color: black;
   text-align: center;
   flex-shrink: 0;
@@ -179,16 +175,17 @@
   width: 150px;
   align-items: center;
   justify-items: center;
+  margin-right: 10px;
 }
 
 .tabs__link_active {
-  background: lightgray;
+  background: lightgreen;
   cursor: default;
 }
 
 .tabs__link:not(.tabs__link_active):hover,
 .tabs__link:not(.tabs__link_active):focus {
-  background-color: #efefef;
+  background-color: lightsalmon;
 }
 
 .tabs__content {

@@ -37,17 +37,17 @@ function downButton() {
             let pasValRes = utils.valPasswordReg(password1.value);
             let againValRes = utils.valPasswordAgainReg(password1.value, password2.value);
             let mailValRes = utils.valMailReg(email.value);
-            if(phone.value && keyword.value){
+            if (phone.value && keyword.value) {
                 let phoneValRes = utils.valPhoneReg(phone.value);
                 let keyValRes = true;
                 state = logValRes && pasValRes && againValRes && mailValRes && phoneValRes && keyValRes;
-            }else if(keyword.value){
+            } else if (keyword.value) {
                 let keyValRes = true;
                 state = logValRes && pasValRes && againValRes && mailValRes && keyValRes;
-            }else if(phone.value){
+            } else if (phone.value) {
                 let phoneValRes = utils.valPhoneReg(phone.value);
                 state = logValRes && pasValRes && againValRes && mailValRes && phoneValRes;
-            }else{
+            } else {
                 state = logValRes && pasValRes && againValRes && mailValRes;
             }
         } else {

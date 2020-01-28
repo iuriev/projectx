@@ -9,14 +9,12 @@ let password2;
 let email;
 let phone;
 let id;
+let file;
 let keyword;
 let about;
 xhr = new XMLHttpRequest();
 
 window.addEventListener('load', function () {
-
-
-    document.getElementById('language-authorization').addEventListener('change', helpers.changeSelectedValue);
     id = localStorage.getItem("UserID");
     login = document.querySelector('#login');
     password = document.querySelector('#pass');
@@ -25,57 +23,39 @@ window.addEventListener('load', function () {
     phone = document.querySelector('#phone');
     keyword = document.querySelector('#keyword');
     about = document.querySelector('#aboutMe');
-    file = document.querySelector('#file');   
+    file = document.querySelector('#file');
     document.querySelector('#userId').value = id;
-    document.getElementById('uploadForm').addEventListener('submit', retFunction);
-
-    document.querySelector('#accountPhoto').src =localStorage.getItem('UserAvatar')
- 
-   
-
-
+    document.getElementById('language-authorization').addEventListener('change', helpers.changeSelectedValue);
+    document.getElementById('uploadForm').addEventListener('submit', addImage);
+    document.querySelector('#accountPhoto').src = localStorage.getItem('UserAvatar')
     let e = document.getElementById("language-authorization");
-    if (localStorage.getItem('language') === "RU") {
-        e.selectedIndex = 0;
-    } else {
-        e.selectedIndex = 1;
-    }
-
-   
-   
-    importInputs();
+    localStorage.getItem('language') === "RU" ?e.selectedIndex = 0 : e.selectedIndex = 1;
     document.querySelector('#returnbtn').addEventListener('click', function () {
         utils.changeLocation(constants.pathStudentsPage);
     });
-    document.querySelector('#savebtn').addEventListener('click', function () {
-        if (!utils.valLoginReg(login.value) || !utils.valMailReg(email.value) || !utils.valPasswordReg(password.value) || !utils.valPasswordAgainReg(password.value, password2.value)) {
-            document.addEventListener('keyup', function () {
-                utils.valLoginReg(login.value);
-                utils.valMailReg(email.value);
-                utils.valPhoneReg(phone.value);
-                utils.valPasswordReg(password.value);
-                utils.valPasswordAgainReg(password.value, password2.value);
-            });
-        } else {
-            let languageArray = helpers.getCurrentLanguagesSet();
-            alert(languageArray.acc_successfullyUpdate);
-            updateInfo(file.value);
-        }
-    });
-
+    document.querySelector('#savebtn').addEventListener('click', saveUserData );
+    importInputs();
     helpers.setAccountPageLanguage();
-
-  
 });
 
+function saveUserData(){
+    if (!utils.valLoginReg(login.value) || !utils.valMailReg(email.value) || !utils.valPasswordReg(password.value) || !utils.valPasswordAgainReg(password.value, password2.value)) {
+        document.addEventListener('keyup', function () {
+            utils.valLoginReg(login.value);
+            utils.valMailReg(email.value);
+            utils.valPhoneReg(phone.value);
+            utils.valPasswordReg(password.value);
+            utils.valPasswordAgainReg(password.value, password2.value);
+        });
+    } else {
+        let languageArray = helpers.getCurrentLanguagesSet();
+        updateInfo();
+        alert(languageArray.acc_successfullyUpdate);
+    }
+}
 
-
-
-function retFunction() {
-   
-
+function addImage() {
     this.action = "http://localhost:3001/upload";
-    
     setTimeout(() => {
         xhr = new XMLHttpRequest();
         let requestBody = {
@@ -90,39 +70,17 @@ function retFunction() {
                 }
                 if (xhr.status === 200) {
                     let responseArray = JSON.parse(xhr.responseText);
-                    console.log(responseArray[0].picture_url);
-                    localStorage.setItem("UserAvatar", "../src/server/uploads/"+responseArray[0].picture_url);
-                    console.log(localStorage.getItem("UserAvatar"));
-    
+                    localStorage.setItem("UserAvatar", "../src/server/uploads/" + responseArray[0].picture_url);
                     utils.changeLocation(constants.pathAccount);
-         document.location.reload(true);
-    
-                                }
+                    document.location.reload(true);
+                }
             }
         };
-        xhr.send(JSON.stringify(requestBody));},100)
-
-    
-
-
-
-
-  //  console.log("мы поменяли картинку в бд");
-   // console.log(localStorage.getItem("UserAvatar"));
-
-
-
-    
-
-     }
-
-
-
+        xhr.send(JSON.stringify(requestBody));
+    }, 100)
+}
 
 function importInputs() {
-
-   
-
     xhr.open("GET", `${constants.server}teacher?id=${id}`, true);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = function () {
@@ -141,7 +99,6 @@ function importInputs() {
 }
 
 function updateInfo() {
-
     let requestBody = {
         id: id,
         login: login.value,
@@ -156,13 +113,8 @@ function updateInfo() {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             importInputs();
-
-
             localStorage.setItem("UserLogin", login.value);
         }
     };
-
     xhr.send(JSON.stringify(requestBody));
-
 }
-

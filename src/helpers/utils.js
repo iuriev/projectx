@@ -21,7 +21,7 @@ function errorAuth() {
 
 function valLoginReg(login) {
     let languageArray = helpers.getCurrentLanguagesSet();
-    if (login[0].match(/[a-zA-Z]/) && login.length > 1) {
+    if ( login.length > 1 && login[0].match(/[a-zA-Z]/)) {
         document.querySelector('.registration_inputLogin__error').innerHTML = "";
         return true;
     } else {
@@ -54,7 +54,7 @@ function valPasswordAgainReg(password1, password2) {
 
 function valMailReg(email) {
     let languageArray = helpers.getCurrentLanguagesSet();
-    if (email.match(/\S+@\S+\.\S+/)) {
+    if (email.length > 0 && email.match(/\S+@\S+\.\S+/)) {
         document.querySelector('.registration_inputMail__error').innerHTML = "";
         return true;
     } else {
@@ -65,10 +65,10 @@ function valMailReg(email) {
 
 function valPhoneReg(phone) {
     let languageArray = helpers.getCurrentLanguagesSet();
-    if(phone.slice(0, 3) === "+38" && phone.length === 13){
+    if (phone.length === 13 && phone.slice(0, 3) === "+38") {
         document.querySelector('.registration_inputPhone__error').innerHTML = "";
         return true;
-    }else {
+    } else {
         document.querySelector('.registration_inputPhone__error').innerHTML = languageArray.b_phoneError;
         return false;
     }

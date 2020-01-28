@@ -19,7 +19,6 @@ window.addEventListener('load', function () {
     document.getElementById('myLoginName').innerHTML = languageArray.s_teacher_login + localStorage.getItem("UserLogin");
     document.getElementById('fullScreen').addEventListener('click', fullScreen);
     document.getElementById('logout').addEventListener('click', logout);
-
     document.getElementById('btnCreate').addEventListener('click', function () {
         if (utils.validateCreateInput(fn.value, ln.value, ht.value, age.value)) {
             createStudent()
@@ -44,7 +43,7 @@ function addAvatar(){
     if(localStorage.getItem('UserAvatar') !== "null"){
         img.setAttribute('src', imgFromServer);
     }else{
-        img.setAttribute('src', '../assets/img/avatar2.png');
+        img.setAttribute('src', '../assets/img/avatar.png');
     }
     blockImg.appendChild(img);
     img.classList.add("userImg");
@@ -57,7 +56,6 @@ function changeStudentsPageLanguage() {
 }
 
 function addTabsOnStudentsPage() {
-
     let arr = JSON.parse(localStorage.getItem("teacherGroups"));
     if (arr.length < 3) {
         document.getElementById("addNewTab").addEventListener('click', createNewGroup);
@@ -163,11 +161,9 @@ function createNewGroup() {
     xhr.send(JSON.stringify(requestBody));
 }
 
-
 function changetab() {
     let tab2 = document.getElementById("content-2");
     let tab3 = document.getElementById("content-3");
-
     switch (this.id[7]) {
         case '1':
             localStorage.setItem("activeTab", 1);
@@ -382,7 +378,6 @@ function importStudent(id_group) {
         }
     };
     xhr.send();
-
 }
 
 function createStudent() {
@@ -441,4 +436,3 @@ function deleteStudent() {
     };
     xhr.send(JSON.stringify(requestBody));
 }
-

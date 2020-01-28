@@ -7,36 +7,27 @@
 </head>
 <body>
 <main class="students">
-
     <div class="header header_students">
         <div class="login-as">
             <p id="myLoginName"></p>
+            <button id="account" class="header__buttons"></button>
         </div>
         <div class="header__item-wrapper">
-            <div>
-                <button id="fullScreen" class="header__buttons">
-                    <img src="../assets/img/fullscreen.png" alt="FullScreen" title="FullScreen">
-                </button>
-            </div>
-            <div>
-                <button id="account" class="header__buttons">
-<!--                    <img src="../assets/img/account.png" alt="MyAccount" title="MyAccount">-->
-                </button>
-            </div>
-            <div>
-                <button id="logout" class="header__buttons">
-                    <img src="../assets/img/logout.png" alt="Logout" title="Logout">
-                </button>
-            </div>
         </div>
         <div class="header__item-wrapper">
-            <div class="language_name">Language:</div>
+            <div class="language_name"></div>
             <div class="language">
                 <select class="language_select" id="language-authorization">
                     <option value="RU" class="language_select__item">Русский</option>
                     <option value="EN" class="language_select__item">English</option>
                 </select>
             </div>
+            <button id="fullScreen" class="header__buttons">
+                <img src="../assets/img/fullscreen.png" alt="FullScreen" title="FullScreen">
+            </button>
+            <button id="logout" class="header__buttons">
+                <img src="../assets/img/logout.png" alt="Logout" title="Logout">
+            </button>
         </div>
     </div>
     <div class="wrapper_students">
@@ -63,7 +54,6 @@
                 <div class="buttons__wrapper">
                     <button class="button" id="btnCreate" title="Create Student"></button>
                 </div>
-
             </div>
         </div>
         <div class="table">
@@ -75,7 +65,6 @@
             </div>
         </div>
     </div>
-
     <div class="footer">
         <div class="footer__devs">
             <p>Devs:</p>
@@ -88,13 +77,11 @@
                 <p id="ivan"></p>
             </div>
         </div>
-
         <div class="footer__copyright">
             <p>DreamTeam 2019-2020</p>
             <p id="copyright"></p>
         </div>
     </div>
-
 </main>
 </body>
 </html>

@@ -1,5 +1,3 @@
-
-
 .wrapper-contentBlock(@widthOfblock: 50%; @minHeight: 50%; @minWidth: 450px) {
   width: @widthOfblock;
   min-height: @minHeight;
@@ -73,6 +71,9 @@
   top: 10px;
   left: 30px;
   font-weight: bold;
+  display: flex;
+  justify-items: center;
+  align-items: center;
 }
 .footer {
   display: flex;
@@ -94,7 +95,7 @@
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  background-color: @PDark;
+  background-color: cornflowerblue;
 
   &_students{
     display: flex;
@@ -102,6 +103,7 @@
     align-items: center;
 
     & .language_name{
+
       padding-top: 5px;
     }
   }
@@ -110,15 +112,19 @@
   }
   &__item-wrapper{
     display: flex;
+    justify-items: center;
+    align-items: center;
     justify-content: space-between;
   }
 }
 .caption {
   font-size: large;
+  margin-right: 20px;
   color: @BackgroundMain;
 }
 
 .userImg{
-  //width: 50px;
+  width: 50px;
   height: 50px;
+
 }
