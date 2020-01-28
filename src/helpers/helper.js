@@ -151,6 +151,14 @@ function setAuthorizationPageLanguage() {
     document.getElementById("ivan").innerText = languageArray.a_ivan;
     document.getElementById("copyright").innerText = languageArray.a_copyright;
 
+    document.getElementById("myBtn").innerText = languageArray.a_forgotPassword;
+    document.getElementById("modalPassword").innerText = languageArray.a_modalPassword;
+    document.getElementById("modalLogin").innerText = languageArray.a_modalLogin;
+    document.getElementById("modalKeyword").innerText = languageArray.a_modalKeyword;
+    document.getElementById("Seach_Key_Word").innerText = languageArray.a_seach_Key_Word;
+    document.getElementById("givePasswordModal").innerText = languageArray.a_givePasswordModal;
+
+
     if(document.querySelector('.input-section__error-password').innerHTML !== ""){
         document.querySelector('.input-section__error-password').innerHTML = languageArray.a_loginErrorMessage;
     }
