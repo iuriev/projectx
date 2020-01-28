@@ -5,7 +5,6 @@ const helpers = require('./helpers/helper');
 let inputLogin;
 let inputPass;
 let xhr;
-let idOfUser;
 
 window.addEventListener("load", function () {
     initializedApp();
@@ -14,6 +13,7 @@ window.addEventListener("load", function () {
         utils.changeLocation(constants.pathRegistrationPage);
     });
     document.getElementById('language-authorization').addEventListener('change', helpers.changeSelectedValue);
+    document.getElementById('Seach_Key_Word').addEventListener('click', rememberPassword);
     inputLogin = document.getElementById('inputLogin');
     inputPass = document.getElementById('inputPass');
     xhr = new XMLHttpRequest();
@@ -35,6 +35,12 @@ function initializedApp() {
                 "a_dmitry": "Медведев Дмитрий",
                 "a_ivan": "Юрьев Иван",
                 "a_copyright": "Все права защищены",
+                "a_forgotPassword": "Забыли пароль?",
+                "a_modalPassword": "Восстановление пароля",
+                "a_modalLogin": "Логин:",
+                "a_modalKeyword": "Ключевое слово: ",
+                "a_seach_Key_Word": "Поиск ключевого слова",
+                "a_givePasswordModal": "Ваш пароль: ",
                 "b_loginError": "Логин должен быть не меньше 5 символов и начинаться с числа",
                 "b_passwordError": "Длина пароля минимум 5 символов",
                 "b_passwordMachError": "Пароли не совпадают",
@@ -86,6 +92,12 @@ function initializedApp() {
                 "a_dmitry": "Medvedev Dmitry",
                 "a_ivan": "Iuriev Ivan",
                 "a_copyright": "All rights reserved",
+                "a_forgotPassword": "Forgot Password?",
+                "a_modalPassword": "Password recovery",
+                "a_modalLogin": "Login:",
+                "a_modalKeyword": "Key_word:",
+                "a_seach_Key_Word": "Search Key Word",
+                "a_givePasswordModal": "Your password: ",
                 "b_loginError": "Enter more than five char and begin with a letter",
                 "b_passwordError": "Password must be longer than 5 characters",
                 "b_passwordMachError": "Password should match",
@@ -140,6 +152,23 @@ function initializedApp() {
     helpers.setAuthorizationPageLanguage();
 }
 
+function rememberPassword(){
+    let answer = document.getElementById("answer");
+    let loginInput = document.getElementById("inf_login").value;
+    let keywordModal = document.getElementById("inf_keyword").value;
+    xhr.open("GET", `${constants.server}password-forgot?keyword=${keywordModal}`, false);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            let temp = JSON.parse(xhr.responseText);
+            if(loginInput === temp[0].login){
+                console.log(temp[0].password);
+                answer.innerHTML = temp[0].password;
+            }
+        }
+    };
+    xhr.send();
+}
+
 function processAuthorization() {
     validateForm();
     let requestBody = {
@@ -170,6 +199,7 @@ function processAuthorization() {
 function validateForm() {
     utils.validateInput(inputPass.value, inputLogin.value);
 }
+
 //_______________________________modal_window_Forgot_Password?
 var modal = document.getElementById('myModal');
 var btn = document.getElementById("myBtn");
@@ -178,22 +208,22 @@ var inf_login=document.getElementById("inf_login");
 var inf_keyword=document.getElementById("inf_keyword");
 btn.onclick = function() {
 modal.style.display = "block";
-}
-var result=document.getElementById("Seach_Key_Word") 
-result.onclick = function(){
-    vuvod();
-} 
+};
+// var result=document.getElementById("Seach_Key_Word")
+// result.onclick = function(){
+//     vuvod();
+// } ;
 span.onclick = function() {
     modal.style.display = "none";
-}
+};
 window.onclick = function(event) {
-    if (event.target == modal) {
+    if (event.target === modal) {
         modal.style.display = "none";
     }
-}
-function vuvod(){
-    document.getElementById('answer').value = inf_login.value+inf_keyword.value;
-}
+};
+// function vuvod(){
+//     document.getElementById('answer').value = inf_login.value+inf_keyword.value;
+// }
 
     
      

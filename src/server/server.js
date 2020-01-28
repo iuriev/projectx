@@ -77,6 +77,17 @@ server.get('/teacher-groups', function (req, res) {
     });
 });
 
+server.get('/password-forgot', function (req, res) {
+    var sql = `SELECT keyword, password, login FROM teacher WHERE keyword = $1 ORDER BY keyword ASC`;
+    client.query(sql, [req.query.keyword], (err, response) => {
+        if (err) {
+            res.status(500).send("SERVER ERROR");
+        } else {
+            res.status(200).json(response.rows);
+        }
+    });
+});
+
 server.get('/all-students', function (req, res) {
     var sql = `SELECT id,fn,ln,age,ht FROM account WHERE id_group = $1 ORDER BY id ASC;`;
     client.query(sql, [req.query.id_group], (err, response) => {
@@ -98,17 +109,6 @@ server.get('/teacher', function (req, res) {
         }
     });
 });
-
-// server.get('/avatar', function(req, res){
-//     var sql = `SELECT picture_url FROM teacher WHERE id = $1 ORDER BY id ASC;`;
-//     client.query(sql, [req.query.id], (err, response) => {
-//         if (err) {
-//             res.status(500).send("SERVER ERROR");
-//         } else {
-//             res.status(200).json(response.rows);
-//         }
-//     });
-// });
 
 server.post('/update-teacher', function (req, res) {
     var sql = `UPDATE teacher SET (login,password,email,phone,keyword,about) = ($2, $3, $4, $5, $6, $7) WHERE id = $1;`;

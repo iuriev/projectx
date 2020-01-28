@@ -38,28 +38,31 @@
             <input type="button" name="cancel" value="Отмена">
         </div>
         <div id="forgot_password">
-            <p class="myBtn" id="myBtn">Forgot Password?</p>
+            <p class="myBtn" id="myBtn"></p>
         </div>
         <div id="myModal" class="modal">
             <div class="modal-content">
               <div class="modal-header">
                 <span class="close">&times;</span>
-                <p>Password recovery</p>
+                <p id="modalPassword"></p>
               </div>
               <div class="modal-body">
                 <div class="modal_body_login">
-                    <p>login:</p>
+                    <p id="modalLogin"></p>
                     <label><input id="inf_login" type="text"></label>
                 </div>
                 <div class="modal_body_Key_word">
-                    <p>Key_word:</p>
+                    <p id="modalKeyword"></p>
                     <label><input id="inf_keyword" type="text"></label>
                 </div>
                 <div class="button_key_word">
-                    <button class="Seach_Key_Word" id="Seach_Key_Word">Seach Key Word</button>
+                    <button class="Seach_Key_Word" id="Seach_Key_Word"></button>
                 </div>
                 </div>
-                    <label for="password_of_key_login">Your password: <input class="password_of_key_login" id="answer" type="text"></label>
+                <div>
+                    <div id="givePasswordModal" class="givePasswordModal"></div>
+                    <div id="answer" class="answer"></div>
+                </div>
                 </div>
         </div>
     </div>
