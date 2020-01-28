@@ -54,7 +54,6 @@ server.post('/authorize-teacher', function (req, res) {
 server.post('/create-teacher', function (req, res) {
     var newGroupId = 0;
     var newTeacherId = 0;
-    console.log(req.body)
     var sql1 = `INSERT INTO teacher (login,password,email,phone,keyword,picture_url) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;`;
     client.query(sql1, [req.body.login, req.body.password, req.body.email, req.body.phone, req.body.keyword, req.body.avatar], (err, response) => {
         if (err) {
@@ -88,7 +87,6 @@ server.get('/teacher-groups', function (req, res) {
         if (err) {
             res.status(500).send("SERVER ERROR");
         } else {
-            console.log(response.rows);
             res.status(200).json(response.rows);
         }
     });
@@ -209,8 +207,6 @@ server.post('/delete-group', function (req, res) {
 
 
 server.post('/create-new-group', function (req, res) {
-
-    console.log("ffd")
     var newGroupId = 0;
     var sql2 = `INSERT INTO course_group (name) VALUES ($1) RETURNING id ;`;
     client.query(sql2, ["untitled"], (err, response) => {
@@ -252,7 +248,6 @@ server.post('/upload', function(req, res) {
         res.status(502).send("SERVER ERROR");
          } else {
         res.status(200).send();
-        console.log( t+sampleFile.name)
         }
 });
            
