@@ -23,7 +23,8 @@ window.addEventListener('load', function () {
     phone = document.querySelector('#phone');
     keyword = document.querySelector('#keyword');
     about = document.querySelector('#aboutMe');
-
+    document.querySelector('#accountPhoto').src =localStorage.getItem('UserAvatar')
+    
     let e = document.getElementById("language-authorization");
     if (localStorage.getItem('language') === "RU") {
         e.selectedIndex = 0;
