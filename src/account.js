@@ -11,8 +11,10 @@ let phone;
 let id;
 let keyword;
 let about;
+xhr = new XMLHttpRequest();
 
 window.addEventListener('load', function () {
+
 
     document.getElementById('language-authorization').addEventListener('change', helpers.changeSelectedValue);
     id = localStorage.getItem("UserID");
@@ -23,8 +25,15 @@ window.addEventListener('load', function () {
     phone = document.querySelector('#phone');
     keyword = document.querySelector('#keyword');
     about = document.querySelector('#aboutMe');
+    file = document.querySelector('#file');   
+    document.querySelector('#userId').value = id;
+    document.getElementById('uploadForm').addEventListener('submit', retFunction);
+
     document.querySelector('#accountPhoto').src =localStorage.getItem('UserAvatar')
-    
+ 
+   
+
+
     let e = document.getElementById("language-authorization");
     if (localStorage.getItem('language') === "RU") {
         e.selectedIndex = 0;
@@ -32,7 +41,8 @@ window.addEventListener('load', function () {
         e.selectedIndex = 1;
     }
 
-    xhr = new XMLHttpRequest();
+   
+   
     importInputs();
     document.querySelector('#returnbtn').addEventListener('click', function () {
         utils.changeLocation(constants.pathStudentsPage);
@@ -49,13 +59,70 @@ window.addEventListener('load', function () {
         } else {
             let languageArray = helpers.getCurrentLanguagesSet();
             alert(languageArray.acc_successfullyUpdate);
-            updateInfo();
+            updateInfo(file.value);
         }
     });
+
     helpers.setAccountPageLanguage();
+
+  
 });
 
+
+
+
+function retFunction() {
+   
+
+    this.action = "http://localhost:3001/upload";
+    
+    setTimeout(() => {
+        xhr = new XMLHttpRequest();
+        let requestBody = {
+            id: localStorage.getItem("UserID")
+        };
+        xhr.open("POST", `${constants.server}get-new-avatar`);
+        xhr.setRequestHeader("Content-type", "application/json");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 501 && xhr.responseText === "SERVER ERROR") {
+                    utils.errorAuth();
+                }
+                if (xhr.status === 200) {
+                    let responseArray = JSON.parse(xhr.responseText);
+                    console.log(responseArray[0].picture_url);
+                    localStorage.setItem("UserAvatar", "../src/server/uploads/"+responseArray[0].picture_url);
+                    console.log(localStorage.getItem("UserAvatar"));
+    
+                    utils.changeLocation(constants.pathAccount);
+         document.location.reload(true);
+    
+                                }
+            }
+        };
+        xhr.send(JSON.stringify(requestBody));},100)
+
+    
+
+
+
+
+  //  console.log("мы поменяли картинку в бд");
+   // console.log(localStorage.getItem("UserAvatar"));
+
+
+
+    
+
+     }
+
+
+
+
 function importInputs() {
+
+   
+
     xhr.open("GET", `${constants.server}teacher?id=${id}`, true);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = function () {
@@ -89,6 +156,8 @@ function updateInfo() {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             importInputs();
+
+
             localStorage.setItem("UserLogin", login.value);
         }
     };
@@ -96,3 +165,4 @@ function updateInfo() {
     xhr.send(JSON.stringify(requestBody));
 
 }
+

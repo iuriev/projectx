@@ -5,6 +5,7 @@ var {Client} = require('pg');
 var express = require('express');
 var server = express();
 var client = new Client(config.connectionString);
+const fileUpload = require('express-fileupload');
 client.connect();
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({extended: true}));
@@ -16,6 +17,22 @@ server.use(function (req, res, next) {
 
 server.listen(3001, function () {
     console.log('Server started on port 3001 ..')
+});
+
+server.post('/get-new-avatar', function (req, res) {
+
+    var sql = `SELECT picture_url FROM teacher WHERE id = $1; `;
+    client.query(sql, [req.body.id], (error, response) => {
+        if (error) {
+            res.status(500).send("SERVER ERROR");
+        } else {
+            if (response.rows.length) {
+                res.status(200).json(response.rows);
+            } else {
+                res.status(501).send("SERVER ERROR");
+            }
+        }
+    });
 });
 
 server.post('/authorize-teacher', function (req, res) {
@@ -213,6 +230,39 @@ server.post('/create-new-group', function (req, res) {
     });
 
 
+});
+
+server.use(fileUpload());
+server.post('/upload', function(req, res) {
+    if (!req.files || Object.keys(req.files).length === 0) {
+        return res.status(400).send('No files were uploaded.');
+    }
+    let sampleFile = req.files.sampleFile;
+    var pat = __dirname+ "\\uploads\\";
+    var time = new Date();
+    var t = time.getTime();
+        sampleFile.mv(pat+`${t+ sampleFile.name}`, function(err) {
+        if (err)
+        {
+            return res.status(500).send(err);
+        }
+        var sql = `UPDATE teacher SET picture_url = $2 WHERE id = $1;`;
+        client.query(sql, [req.body.userId, t+sampleFile.name], (err, response) => {
+        if (err) {
+        res.status(502).send("SERVER ERROR");
+         } else {
+        res.status(200).send();
+        console.log( t+sampleFile.name)
+        }
+});
+           
+            
+        res.redirect(307, 'localhost:3030/account.html');
+    });
+    
+    
+
+   
 });
 
 

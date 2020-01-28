@@ -5,7 +5,7 @@ module.exports = {
     pathRegistrationPage: "registration.html",
     pathAuthorizationPage: "authorization.html",
     pathAccount: "account.html",
-    pathAvatar: "../assets/img/avatar.png",
+    pathAvatar: "avatar.png",
 
     instructionEmpty: '',
 };

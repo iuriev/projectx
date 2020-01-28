@@ -66,10 +66,20 @@
                 <div class="foto_acount">
                     <img alt="foto" id="accountPhoto">
                 </div>
+                <form ref='uploadForm'
+                  id='uploadForm'
+                  action=''
+                  method='post'
+                  encType="multipart/form-data">
+                <input type="file" name="sampleFile" />
+                <input type="text" id="userId" name="userId" hidden>
+                <input id = "buttonSender"type='submit' value='Upload!' />
+                </form>
                 <div class="about-me-wrapper">
                     <label for="aboutMe" id="textearea-label"></label>
                     <textarea name="about-me" id="aboutMe" cols="30" rows="10" class="textarea"></textarea>
                 </div>
+               
             </div>
         </div>
        

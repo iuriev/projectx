@@ -159,7 +159,8 @@ function processAuthorization() {
                 let responseArray = JSON.parse(xhr.responseText);
                 localStorage.setItem("UserID", responseArray[0].id);
                 localStorage.setItem("UserLogin", responseArray[0].login);
-                localStorage.setItem("UserAvatar", responseArray[0].picture_url);
+                
+                localStorage.setItem("UserAvatar", "../src/server/uploads/"+responseArray[0].picture_url);
                 utils.changeLocation(constants.pathStudentsPage);
             }
         }
