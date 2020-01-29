@@ -39,7 +39,11 @@ window.addEventListener('load', function () {
 });
 
 function saveUserData(){
-    if (!utils.valLoginReg(login.value) || !utils.valMailReg(email.value) || !utils.valPasswordReg(password.value) || !utils.valPasswordAgainReg(password.value, password2.value)) {
+    if (!utils.valLoginReg(login.value) ||
+        !utils.valMailReg(email.value) ||
+        !utils.valPasswordReg(password.value)  ||
+        !utils.valPasswordAgainReg(password.value, password2.value) ||
+        !utils.valPhoneReg(phone.value) ) {
         document.addEventListener('keyup', function () {
             utils.valLoginReg(login.value);
             utils.valMailReg(email.value);

@@ -65,13 +65,20 @@ function valMailReg(email) {
 
 function valPhoneReg(phone) {
     let languageArray = helpers.getCurrentLanguagesSet();
-    if (phone.length === 13 && phone.slice(0, 3) === "+38") {
+    if(phone.length > 0){
+        if (phone.length === 13 && phone.slice(0, 3) === "+38") {
+            document.querySelector('.registration_inputPhone__error').innerHTML = "";
+            return true;
+        } else {
+            document.querySelector('.registration_inputPhone__error').innerHTML = languageArray.b_phoneError;
+            return false;
+        }
+    }
+    else {
         document.querySelector('.registration_inputPhone__error').innerHTML = "";
         return true;
-    } else {
-        document.querySelector('.registration_inputPhone__error').innerHTML = languageArray.b_phoneError;
-        return false;
     }
+
 }
 
 function getErrorMessageByStatusCode(statusCode) {
