@@ -20,6 +20,17 @@ server.listen(3001, function () {
     console.log('Server started on port 3001 ..')
 });
 
+server.post('/delete-all-students-from-group', function (req, res) {
+    let sql = `DELETE FROM account WHERE id_group = $1 `;
+    client.query(sql, [req.body.groupId], (err, response) => {
+        if (err) {
+            res.status(500).send("SERVER ERROR");
+        } else {
+            res.status(200).send();
+        }
+    });
+});
+
 server.post('/password-forgot', function (req, res) {
     let sql = `SELECT password FROM teacher WHERE  login = $1 AND keyword = $2`;
     client.query(sql, [req.body.login, req.body.keyword], (err, response) => {

@@ -74,6 +74,7 @@ function setStudentsPageLanguage() {
     document.getElementById("dmitry").innerText = languageArray.a_dmitry;
     document.getElementById("ivan").innerText = languageArray.a_ivan;
     document.getElementById("copyright").innerText = languageArray.a_copyright;
+    document.getElementById("deleteStudentFromActiveGroup").innerText = languageArray.s_delete_all;
 }
 
 function setAccountPageLanguage() {

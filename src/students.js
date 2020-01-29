@@ -15,6 +15,7 @@ window.addEventListener('load', function () {
     age = document.getElementById('age');
     ht = document.getElementById('homeTown');
     let languageArray = helpers.getCurrentLanguagesSet();
+    document.getElementById('deleteStudentFromActiveGroup').addEventListener('click', deleteStudentFromActiveGroup);
     document.getElementById('language-authorization').addEventListener('change', helpers.changeSelectedValue);
     document.getElementById('myLoginName').innerHTML = languageArray.s_teacher_login + localStorage.getItem("UserLogin");
     document.getElementById('fullScreen').addEventListener('click', fullScreen);
@@ -124,6 +125,25 @@ function changeTabName() {
         xhr.send(JSON.stringify(requestBody));
 
     };
+}
+function deleteStudentFromActiveGroup() {
+
+    let activeTab = localStorage.getItem("activeTab");
+    let arr = JSON.parse(localStorage.getItem("teacherGroups"));
+    let groupId = arr [activeTab-1];
+    let requestBody = {
+        groupId: groupId
+    };
+    console.log(groupId)
+    xhr.open("POST", `${constants.server}delete-all-students-from-group`, false);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            getTeacherGroups();
+            cansel();
+        }
+    };
+    xhr.send(JSON.stringify(requestBody));
 }
 
 function deleteTab() {

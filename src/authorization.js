@@ -82,7 +82,8 @@ function initializedApp() {
                 "s_createButton": "Создать",
                 "s_teacher_login": "Здравствуйте, ",
                 "s_createStudentError": "Для того чтобы добавить студента заполните пожалуйста все поля",
-                "s_createStudentFieldsError": "Поля 'Имя', 'Фамилия' и 'Город' не могу содержать числа или символы"
+                "s_createStudentFieldsError": "Поля 'Имя', 'Фамилия' и 'Город' не могу содержать числа или символы",
+                "s_delete_all": "Очистить выбранную таблицу"
             },
             {
                 "a_loginInputLabel": "Enter login",
@@ -143,7 +144,8 @@ function initializedApp() {
                 "s_createButton": "Create ",
                 "s_teacher_login": "Hello, ",
                 "s_createStudentError": "If you want to add new student please fill all inputs",
-                "s_createStudentFieldsError": "Fields \"First Name\", \"Last Name\", \"Hometown\" must not contain numbers or symbols"
+                "s_createStudentFieldsError": "Fields \"First Name\", \"Last Name\", \"Hometown\" must not contain numbers or symbols",
+                "s_delete_all": "Clear selected table"
             }
         ];
     localStorage.setItem('languages', JSON.stringify(languages));
