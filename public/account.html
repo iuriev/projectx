@@ -7,51 +7,89 @@
     <title>Account</title>
 </head>
 <body>
-   
-    <div class="wrapper-account">
+   <div class="wrapper-account">
+    <div class="header">
+        <div class="header__title">
+            <h1 class="caption" id="caption"></h1>
+        </div>
         <div class="language">
             <select class="language_select" id="language-authorization">
                 <option value="RU" class="language_select__item">Русский</option>
                 <option value="EN" class="language_select__item">English</option>
             </select>
         </div>
+    </div>
+    <div class="app-wrapper">
         <div class="app-account">
-            <h1 id = "changeDataForm" class="header-account"></h1>
+            <h1 id="changeDataForm" class="header-account"></h1>
             <div class="account-inputs">
                 <div class="account-inputs__wrapper">
-                    <label id = "loginLabel"for="login"></label>
+                    <label id="loginLabel" for="login"></label>
                     <input type="text" class="account-inputs__input" id="login">
                     <div class="registration_inputLogin__error registration_input__error"></div>
                 </div>
                 <div class="account-inputs__wrapper">
-                    <label id = "password1Label" for="pass"></label>
+                    <label id="password1Label" for="pass"></label>
                     <input type="password" class="account-inputs__input" id="pass">
                     <div class="registration_inputPassword__error registration_input__error"></div>
-
                 </div>
                 <div class="account-inputs__wrapper">
-                    <label  id = "password2Label" for="pass"></label>
+                    <label id="password2Label" for="pass"></label>
                     <input type="password" class="account-inputs__input" id="pass2">
                     <div class="registration_inputAgainPassword__error registration_input__error"></div>
                 </div>
                 <div class="account-inputs__wrapper">
-                    <label id = "emailLabel" for="email"></label>
+                    <label id="emailLabel" for="email"></label>
                     <input type="text" class="account-inputs__input" id="email">
                     <div class="registration_inputMail__error registration_input__error"></div>
                 </div>
                 <div class="account-inputs__wrapper">
-                    <label id = "phoneLabel"for="phone"></label>
+                    <label id="phoneLabel" for="phone"></label>
                     <input type="text" class="account-inputs__input" id="phone">
                     <div class="registration_inputPhone__error registration_input__error"></div>
                 </div>
-            
+                <div class="account-inputs__wrapper">
+                    <label id="keywordLabel" for="keyword"></label>
+                    <input type="text" class="account-inputs__input" id="keyword">
+                </div>
             </div>
             <div class="account-buttons">
                 <button id="savebtn" class="account-buttons__button"></button>
                 <button id="returnbtn" class="account-buttons__button"></button>
             </div>
         </div>
-        
+        <div class="right-side-app">
+            <div class="foto_acount">
+                <img alt="foto" id="accountPhoto">
+            </div>
+            <form id='uploadForm' method='post' encType="multipart/form-data">
+                <input type="file" name="sampleFile"/>
+                <input type="text" id="userId" name="userId" hidden>
+                <input class="account-buttons__button" id="buttonSender" type='submit'/>
+            </form>
+            <div class="about-me-wrapper">
+                <label for="aboutMe" id="textearea-label"></label>
+                <textarea name="about-me" id="aboutMe" cols="30" rows="10" class="textarea"></textarea>
+            </div>
+        </div>
     </div>
+    <div class="footer">
+        <div class="footer__devs">
+            <p>Devs:</p>
+            <div class="team">
+                <p id="boris"></p>
+                <p id="andrey"></p>
+            </div>
+            <div class="team">
+                <p id="dmitry"></p>
+                <p id="ivan"></p>
+            </div>
+        </div>
+        <div class="footer__copyright">
+            <p>DreamTeam 2019-2020</p>
+            <p id="copyright"></p>
+        </div>
+    </div>
+</div>
 </body>
 </html>

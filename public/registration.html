@@ -2,22 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Registration</title>
     <link rel="shortcut icon" href="">
 </head>
 <body>
 <main class="wrapper_reg">
-    <div class="language">
-        <select class="language_select" id="language-authorization">
-            <option value="RU" class="language_select__item">Русский</option>
-            <option value="EN" class="language_select__item">English</option>
-        </select>
+    <div class="header">
+        <div class="header__title">
+            <h1 class="caption" id="caption"></h1>
+        </div>
+        <div class="language">
+            <select class="language_select" id="language-authorization">
+                <option value="RU" class="language_select__item">Русский</option>
+                <option value="EN" class="language_select__item">English</option>
+            </select>
+        </div>
     </div>
+
     <div class="registration">
-        <div id= "registrationFormTitle" class="title_Reg"></div>
+        <div id="registrationFormTitle" class="title_Reg"></div>
         <div class="registration_inputLogin registration_input">
             <input id="loginReg" placeholder="">
             <div class="registration_inputLogin__error registration_input__error"></div>
@@ -34,6 +39,10 @@
             <input id="emailReg" type="email" placeholder="">
             <div class="registration_inputMail__error registration_input__error"></div>
         </div>
+        <div class="registration_inputKeyWord registration_input">
+            <input id="keyReg" type="key" placeholder="">
+            <div class="registration_inputKey__error registration_input__error"></div>
+        </div>
         <div class="registration_inputPhone registration_input">
             <input id="telReg" type="tel" placeholder="">
             <div class="registration_inputPhone__error registration_input__error"></div>
@@ -41,6 +50,25 @@
         <div class="registration_inputAll__error registration_input__error"></div>
         <div class="registration_buttonRegister">
             <button id="registerBtn"></button>
+        </div>
+        <div class="registration_return"><a id="backReg" class="registration_return_auth" href="authorization.html"></a>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer__devs">
+            <p>Devs:</p>
+            <div class="team">
+                <p id="boris"></p>
+                <p id="andrey"></p>
+            </div>
+            <div class="team">
+                <p id="dmitry"></p>
+                <p id="ivan"></p>
+            </div>
+        </div>
+        <div class="footer__copyright">
+            <p>DreamTeam 2019-2020</p>
+            <p id="copyright"></p>
         </div>
     </div>
 </main>

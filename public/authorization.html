@@ -7,20 +7,25 @@
 </head>
 <body>
 <div class="wrapper">
-    <div class="language">
-        <select class="language_select" id="language-authorization">
-            <option value="RU" class="language_select__item">Русский</option>
-            <option value="EN" class="language_select__item">English</option>
-        </select>
+    <div class="header">
+        <div class="header__title">
+            <h1 class="caption" id="caption"></h1>
+        </div>
+        <div class="language">
+            <select class="language_select" id="language-authorization">
+                <option value="RU" class="language_select__item">Русский</option>
+                <option value="EN" class="language_select__item">English</option>
+            </select>
+        </div>
     </div>
     <div class="authorization-block">
         <div class="authorization-block__input-section input-section">
-            <label class="input-section__label-login label-all" id = "labelLogin" for="inputLogin"></label>
-            <input class="input-section__input-login input-all" id="inputLogin" type="text" />
+            <label class="input-section__label-login label-all" id="labelLogin" for="inputLogin"></label>
+            <input class="input-section__input-login input-all" id="inputLogin" type="text"/>
         </div>
         <div class="authorization-block__input-section input-section">
             <label class="input-section__label-password label-all" id="labelPass" for="inputPass"></label>
-            <input class="input-section__input-password input-all" id="inputPass" type="text" />
+            <input class="input-section__input-password input-all" id="inputPass" type="text"/>
             <div class="input-section__error-password"></div>
         </div>
         <div class="authorization-block__button-section button-section">
@@ -28,7 +33,58 @@
             <button class="button-section__btn-registration btn-all" id="register"></button>
         </div>
         <div id="regText"></div>
+        <div class="prompt-form-container">
+            <input name="text" type="text">
+            <input type="button" name="cancel" value="Отмена">
+        </div>
+        <div id="forgot_password">
+            <p class="myBtn" id="myBtn"></p>
+        </div>
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close">&times;</span>
+                    <p id="modalPassword"></p>
+                </div>
+                <div class="modal-body">
+                    <div class="modal_body_login">
+                        <p id="modalLogin"></p>
+                        <label><input id="inf_login" type="text"></label>
+                    </div>
+                    <div class="modal_body_Key_word">
+                        <p id="modalKeyword"></p>
+                        <label><input id="inf_keyword" type="text"></label>
+                    </div>
+                    <div class="button_key_word">
+                        <button class="Seach_Key_Word" id="Seach_Key_Word"></button>
+                    </div>
+                </div>
+                <div>
+                    <div id="givePasswordModal" class="givePasswordModal"></div>
+                    <div id="answer" class="answer"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer__devs">
+            <p>Devs:</p>
+            <div class="team">
+                <p id="boris"></p>
+                <p id="andrey"></p>
+            </div>
+            <div class="team">
+                <p id="dmitry"></p>
+                <p id="ivan"></p>
+            </div>
+        </div>
+
+        <div class="footer__copyright">
+            <p>DreamTeam 2019-2020</p>
+            <p id="copyright"></p>
+        </div>
     </div>
 </div>
+
 </body>
 </html>
